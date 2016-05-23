@@ -1,6 +1,7 @@
 package com.forest.render;
 
-import java.awt.*;
+import com.forest.Rectangle;
+
 import java.util.LinkedList;
 
 /**

@@ -1,9 +1,9 @@
 package com.forest.menu;
 
+import com.forest.Rectangle;
 import com.forest.render.Renderable;
 import com.forest.render.Renderer;
 
-import java.awt.*;
 import java.util.LinkedList;
 
 /**
@@ -22,7 +22,7 @@ public class Menu implements Renderable {
         Rectangle rectangle = new Rectangle(x, y, 1, 1);
         for (Button button : buttons) {
             if (button.getRectangle().intersects(rectangle)) {
-                button.getCallback().onClick();
+                button.getPressedCallback().onClick();
             }
         }
     }

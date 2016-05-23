@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.forest.android.input.AndroidInput;
 import com.forest.level.Level;
 
 /**
@@ -14,6 +15,7 @@ import com.forest.level.Level;
 public class GameView extends View {
 
     private AndroidRenderer androidRenderer;
+    private AndroidInput androidInput;
 
     public GameView(Context context) {
         super(context);
@@ -29,6 +31,8 @@ public class GameView extends View {
 
     {
         androidRenderer = new AndroidRenderer(this.getWidth(), this.getHeight(), getContext());
+        androidInput = new AndroidInput(this.getWidth(), this.getHeight());
+        this.setOnTouchListener(androidInput);
 
         Level level = new Level("background_dark.png");
         for (int i = -100; i < 1000; i += 50) {
@@ -38,9 +42,10 @@ public class GameView extends View {
         level.createGroundBlock(150, 100, 50, 50, "block.png");
         level.createGroundBlock(200, 150, 50, 50, "block.png");
         level.createGroundBlock(0, 0, 50, 50, "block.png");
-        //level.createPlayer(0, 50, 50, 80, "player.png", pcInput);
+        level.createPlayer(0, 50, 50, 80, "player.png", androidInput);
 
         androidRenderer.addRenderable(level);
+        androidRenderer.addRenderable(androidInput);
     }
 
     @Override
@@ -48,6 +53,8 @@ public class GameView extends View {
         super.onSizeChanged(w, h, oldw, oldh);
         androidRenderer.setWidth(w);
         androidRenderer.setHeight(h);
+        androidInput.setWidth(w);
+        androidInput.setHeight(h);
     }
 
     @Override

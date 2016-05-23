@@ -15,11 +15,14 @@ public abstract class PowerUp extends Block {
 
     private static int WIDTH = 26, HEIGHT = 26;
 
-    public PowerUp(int x, int y, String powerUpImageName, Level level) {
+    public PowerUp(int x, int y, String powerUpImageName, final Level level) {
         super(x, y, WIDTH, HEIGHT, powerUpImageName, level);
-        this.setCollisionCallback(boxCollisionData -> {
-            level.removeBlock(PowerUp.this);
-            applyPowerUp(boxCollisionData.player);
+        this.setCollisionCallback(new BoxCollisionCallback() {
+            @Override
+            public void contact(BoxCollisionData boxCollisionData) {
+                level.removeBlock(PowerUp.this);
+                applyPowerUp(boxCollisionData.player);
+            }
         });
     }
 

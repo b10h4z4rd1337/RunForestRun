@@ -1,5 +1,6 @@
 package com.forest.level;
 
+import com.forest.Rectangle;
 import com.forest.input.Input;
 import com.forest.level.block.Block;
 import com.forest.level.block.GroundBlock;
@@ -16,8 +17,9 @@ import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.World;
 import org.jbox2d.dynamics.contacts.Contact;
 
-import java.awt.*;
 import java.io.Serializable;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 
 /**
@@ -137,14 +139,24 @@ public class Level implements Serializable, Renderable {
     public Block createGroundBlock(int x, int y, int width, int height, String blockImageName) {
         Block block = new GroundBlock(x, y, width, height, blockImageName, this);
         blocksAfterScope.add(block);
-        blocksAfterScope.sort((o1, o2) -> o1.getX() < o2.getX() ? -1 : 1);
+        Collections.sort(blocksAfterScope, new Comparator<Block>() {
+            @Override
+            public int compare(Block o1, Block o2) {
+                return o1.getX() < o2.getX() ? -1 : 1;
+            }
+        });
         return block;
     }
 
     public PowerUp createJumpPowerUp(int x, int y, String imageName) {
         PowerUp powerUp = new JumpPowerUp(x, y, imageName, this);
         blocksAfterScope.add(powerUp);
-        blocksAfterScope.sort((o1, o2) -> o1.getX() < o2.getX() ? -1 : 1);
+        Collections.sort(blocksAfterScope, new Comparator<Block>() {
+            @Override
+            public int compare(Block o1, Block o2) {
+                return o1.getX() < o2.getX() ? -1 : 1;
+            }
+        });
         return powerUp;
     }
 

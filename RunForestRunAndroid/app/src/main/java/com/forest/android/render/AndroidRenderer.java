@@ -39,12 +39,15 @@ public class AndroidRenderer extends Renderer {
         if (bitmap != null) {
             bitmap = Bitmap.createScaledBitmap(bitmap, (int)width, (int)height, false);
             canvas.drawBitmap(bitmap, x, y, paint);
+            paint.reset();
         }
     }
 
     @Override
     public void drawRect(int x, int y, int width, int height, Color color) {
+        y = this.getHeight() - y - height;
         paint.setColor(android.graphics.Color.argb(color.a, color.r, color.g, color.b));
         canvas.drawRect(x, y, x + width, y + height, paint);
+        paint.reset();
     }
 }
