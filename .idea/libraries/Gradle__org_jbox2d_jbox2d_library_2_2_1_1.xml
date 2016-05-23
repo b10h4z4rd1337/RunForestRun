@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.jbox2d:jbox2d-library:2.2.1.1">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jbox2d/jbox2d-library/2.2.1.1/4f21646d52bb51b56cbc3359c0f8fb223098ee04/jbox2d-library-2.2.1.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jbox2d/jbox2d-library/2.2.1.1/1c3e61571213e2b5f0ffe0fbd29c4de905228564/jbox2d-library-2.2.1.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
