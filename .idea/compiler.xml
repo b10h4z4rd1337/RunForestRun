@@ -28,8 +28,8 @@
       <module name="RunForestRun_main" target="1.8" />
       <module name="RunForestRun_test" target="1.8" />
       <module name="RunForestRunCore" target="1.5" />
-      <module name="RunForestRunCore_main" target="1.8" />
-      <module name="RunForestRunCore_test" target="1.8" />
+      <module name="RunForestRunCore_main" target="1.7" />
+      <module name="RunForestRunCore_test" target="1.7" />
       <module name="RunForestRunPC_main" target="1.8" />
       <module name="RunForestRunPC_test" target="1.8" />
     </bytecodeTargetLevel>

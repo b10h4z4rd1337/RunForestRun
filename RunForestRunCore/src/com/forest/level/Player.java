@@ -1,13 +1,12 @@
 package com.forest.level;
 
+import com.forest.Rectangle;
 import com.forest.input.Input;
 import com.forest.render.Renderable;
 import com.forest.render.Renderer;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.*;
-
-import java.awt.*;
 
 /**
  * Created by Mathias on 06.05.16.
@@ -16,41 +15,86 @@ public class Player implements Renderable {
 
     private float jumpMultiplier = 1.f, speedMultiplier = 1.f;
     private Body body;
-    private Level level;
     private Rectangle rectangle;
     private String playerImageName;
     private boolean applyRight = false, applyLeft = false, rightApplied = false, leftApplied = false;
+    private boolean inputApplied = false;
 
     Player(int x, int y, int width, int height, String playerImageName, Input input, Level level) {
         this.rectangle = new Rectangle(x, y, width, height);
         setupPhysics((float)x, (float)y, (float)width, (float)height, level.getWorld());
         this.playerImageName = playerImageName;
-        this.level = level;
         setupInput(input);
     }
 
     public void setupInput(Input input) {
         if (input != null) {
             //Setup input
-            input.setPressedUpListener(() -> {
+            input.setPressedUpListener(new Input.ActionCallback() {
+                @Override
+                public void execute() {
+
+                }
             });
-            input.setReleaseUpListener(() -> {
+            input.setReleaseUpListener(new Input.ActionCallback() {
+                @Override
+                public void execute() {
+
+                }
             });
 
-            input.setPressedDownListener(() -> {
+            input.setPressedDownListener(new Input.ActionCallback() {
+                @Override
+                public void execute() {
+
+                }
             });
-            input.setReleaseDownListener(() -> {
+            input.setReleaseDownListener(new Input.ActionCallback() {
+                @Override
+                public void execute() {
+
+                }
             });
 
-            input.setPressedRightListener(() -> applyRight = true);
-            input.setReleaseRightListener(() -> applyRight = false);
-
-            input.setPressedLeftListener(() -> applyLeft = true);
-            input.setReleaseLeftListener(() -> applyLeft = false);
-
-            input.setPressedJumpListener(this::jump);
-            input.setReleasedJumpListener(() -> {
+            input.setPressedRightListener(new Input.ActionCallback() {
+                @Override
+                public void execute() {
+                    applyRight = true;
+                }
             });
+            input.setReleaseRightListener(new Input.ActionCallback() {
+                @Override
+                public void execute() {
+                    applyRight = false;
+                }
+            });
+
+            input.setPressedLeftListener(new Input.ActionCallback() {
+                @Override
+                public void execute() {
+                    applyLeft = true;
+                }
+            });
+            input.setReleaseLeftListener(new Input.ActionCallback() {
+                @Override
+                public void execute() {
+                    applyLeft = false;
+                }
+            });
+
+            input.setPressedJumpListener(new Input.ActionCallback() {
+                @Override
+                public void execute() {
+                    Player.this.jump();
+                }
+            });
+            input.setReleasedJumpListener(new Input.ActionCallback() {
+                @Override
+                public void execute() {
+
+                }
+            });
+            inputApplied = true;
         }
     }
 
@@ -81,6 +125,8 @@ public class Player implements Renderable {
 
     @Override
     public void render(Renderer renderer, long deltaTimeInMs) {
+        if (!inputApplied)
+            setupInput(renderer.getInput());
         renderer.drawImage(Math.round(body.getPosition().x * Level.PPM) - rectangle.width / 2,
                 Math.round(body.getPosition().y * Level.PPM) - rectangle.height / 2, rectangle.width, rectangle.height, playerImageName);
     }

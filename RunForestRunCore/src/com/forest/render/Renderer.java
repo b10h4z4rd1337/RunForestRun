@@ -1,6 +1,8 @@
 package com.forest.render;
 
-import java.awt.*;
+import com.forest.Rectangle;
+import com.forest.input.Input;
+
 import java.util.LinkedList;
 
 /**
@@ -8,12 +10,14 @@ import java.util.LinkedList;
  */
 public abstract class Renderer {
 
+    private Input input;
     private LinkedList<Renderable> thingsToRender;
-    protected Rectangle rectangle;
+    protected Rectangle camera;
     private long lastDrawTime = 0;
 
-    public Renderer(int width, int height) {
-        rectangle = new Rectangle(0, 0, width, height);
+    public Renderer(int width, int height, Input input) {
+        this.input = input;
+        camera = new Rectangle(0, 0, width, height);
         lastDrawTime = System.currentTimeMillis();
 
         thingsToRender = new LinkedList<>();
@@ -37,37 +41,49 @@ public abstract class Renderer {
     }
 
     public void setCamPos(int x, int y) {
-        rectangle.x = x;
-        rectangle.y = y;
+        camera.x = x;
+        camera.y = y;
     }
 
     public void addRenderable(Renderable renderable) {
         thingsToRender.add(renderable);
     }
 
+    public void clear() {
+        thingsToRender.clear();
+    }
+
     public void drawImage(float x, float y, float width, float height, String name) {
-        drawImagePrivate((x - rectangle.x), y, width, height, name);
+        drawImagePrivate((x - camera.x), y, width, height, name);
     }
     public abstract void drawImagePrivate(float x, float y, float width, float height, String name);
     public abstract void drawRect(int x, int y, int width, int height, Color color);
+    public abstract void drawString(int x, int y, String text);
+    public abstract void setTextSize(int size);
+    public abstract int getTextHeight();
+    public abstract int getTextWidth(String text);
 
     public int getWidth() {
-        return rectangle.width;
+        return camera.width;
     }
 
     public void setWidth(int width) {
-        this.rectangle.width = width;
+        this.camera.width = width;
     }
 
     public int getHeight() {
-        return rectangle.height;
+        return camera.height;
     }
 
     public void setHeight(int height) {
-        this.rectangle.height = height;
+        this.camera.height = height;
     }
 
     public Rectangle getCamBounds() {
-        return rectangle;
+        return camera;
+    }
+
+    public Input getInput() {
+        return input;
     }
 }

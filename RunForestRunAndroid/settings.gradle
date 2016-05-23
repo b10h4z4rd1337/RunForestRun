@@ -1,3 +1,3 @@
 include ':app', ':RunForestRunCore'
-include ':RunForestRun'
-project (":RunForestRun").projectDir = new File("../");
+include ':RunForestRunCore'
+project (":RunForestRunCore").projectDir = new File("../RunForestRunCore/");

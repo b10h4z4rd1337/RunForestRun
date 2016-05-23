@@ -1,13 +1,12 @@
 package com.forest.level.block;
 
+import com.forest.Rectangle;
 import com.forest.level.Level;
 import com.forest.level.Player;
 import com.forest.render.Renderable;
 import com.forest.render.Renderer;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.dynamics.*;
-
-import java.awt.*;
 
 /**
  * Created by Mathias on 06.05.16.
@@ -24,7 +23,12 @@ public abstract class Block implements Renderable {
         this.rectangle = new Rectangle(x, y, width, height);
         setupPhysics(x, y, width, height, level.getWorld());
         this.blockImageName = blockImageName;
-        this.collisionCallback = boxCollisionData -> { };
+        this.collisionCallback = new BoxCollisionCallback() {
+            @Override
+            public void contact(BoxCollisionData boxCollisionData) {
+
+            }
+        };
         this.level = level;
     }
 
@@ -82,7 +86,6 @@ public abstract class Block implements Renderable {
         return level;
     }
 
-    @FunctionalInterface
     public interface BoxCollisionCallback {
         void contact(BoxCollisionData boxCollisionData);
     }

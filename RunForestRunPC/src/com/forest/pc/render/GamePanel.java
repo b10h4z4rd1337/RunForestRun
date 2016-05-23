@@ -25,7 +25,7 @@ public class GamePanel extends JPanel {
 
     public GamePanel() {
         this.pcInput = new PCInput();
-        this.renderer = new PCRenderer(WIDTH, HEIGHT);
+        this.renderer = new PCRenderer(WIDTH, HEIGHT, pcInput);
         SwingUtilities.invokeLater(GamePanel.this::init);
     }
 
@@ -89,14 +89,14 @@ public class GamePanel extends JPanel {
         frame.pack();
         frame.setVisible(true);
 
-        boolean skip = true;
+        boolean skip = false;
 
         if (skip) {
-            Level level = Main.createTestLevel();
+            Level level = Level.createTestLevel();
             level.createPlayer(0, 50, 50, 80, "player.png", pcInput);
             this.renderer.addRenderable(level);
         } else {
-            this.menu = new com.forest.menu.Menu();
+            this.menu = new com.forest.menu.MainMenu(renderer);
             this.renderer.addRenderable(this.menu);
         }
     }
@@ -107,9 +107,5 @@ public class GamePanel extends JPanel {
         renderer.setGraphics(g);
         renderer.render();
         repaint();
-    }
-
-    public Input getInput() {
-        return pcInput;
     }
 }
