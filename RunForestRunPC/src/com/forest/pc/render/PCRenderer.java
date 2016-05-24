@@ -1,12 +1,10 @@
 package com.forest.pc.render;
 
 import com.forest.input.Input;
-import com.forest.render.*;
 import com.forest.render.Color;
-import com.sun.istack.internal.NotNull;
+import com.forest.render.Renderer;
 
 import java.awt.*;
-import java.awt.Image;
 import java.io.IOException;
 
 /**

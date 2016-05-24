@@ -20,6 +20,11 @@ public class Stopwatch implements Renderable {
         return System.currentTimeMillis() - startTime;
     }
 
+    public String getTimeText() {
+        long time = getTime();
+        return ((time - (time % 1000)) / 1000) + "." + (time % 1000);
+    }
+
     public void setWidth(int width) {
         x = width;
     }
@@ -32,8 +37,7 @@ public class Stopwatch implements Renderable {
     public void render(Renderer renderer) {
         setWidth(renderer.getWidth());
         setHeight(renderer.getHeight());
-        long time = getTime();
-        String text = ((time - (time % 1000)) / 1000) + "." + (time % 1000);
+        String text = getTimeText();
         renderer.setTextSize(20);
         renderer.drawString(x - renderer.getTextWidth(text), y - renderer.getTextHeight(), text, new Color(255, 255, 255));
     }

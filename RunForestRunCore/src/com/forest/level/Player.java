@@ -18,7 +18,7 @@ public class Player implements Renderable {
     private Rectangle rectangle;
     private Level level;
     private String playerImageName;
-    private boolean applyRight = false, applyLeft = false, rightApplied = false, leftApplied = false;
+    private boolean applyRight = false, applyLeft = false, rightApplied = false, leftApplied = false, jumpAllowed = true;
     private boolean inputApplied = false;
     private long timeToComplete = 0;
 
@@ -149,7 +149,7 @@ public class Player implements Renderable {
 
         if (applyRight && (!rightApplied || body.getLinearVelocity().x == 0)) {
             Vec2 vec = body.getLinearVelocity();
-            body.setLinearVelocity(new Vec2(10.f * speedMultiplier, vec.y));
+            body.setLinearVelocity(new Vec2(30.f * speedMultiplier, vec.y));
             rightApplied = true;
         }
 
@@ -161,7 +161,7 @@ public class Player implements Renderable {
 
         if (applyLeft && (!leftApplied || body.getLinearVelocity().x == 0)) {
             Vec2 vec = body.getLinearVelocity();
-            body.setLinearVelocity(new Vec2(-10.f * speedMultiplier, vec.y));
+            body.setLinearVelocity(new Vec2(-30.f * speedMultiplier, vec.y));
             leftApplied = true;
         }
 
@@ -173,7 +173,14 @@ public class Player implements Renderable {
     }
 
     private void jump() {
-        body.applyLinearImpulse(new Vec2(0, 700.f * jumpMultiplier), body.getWorldCenter());
+        if (jumpAllowed) {
+            body.applyLinearImpulse(new Vec2(0, 2000.f * jumpMultiplier), body.getWorldCenter());
+            jumpAllowed = false;
+        }
+    }
+
+    public void allowJump() {
+        jumpAllowed = true;
     }
 
     public void setJumpMultiplier(float jumpMultiplier) {

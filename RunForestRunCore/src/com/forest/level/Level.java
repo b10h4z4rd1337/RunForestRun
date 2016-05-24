@@ -32,15 +32,15 @@ public class Level implements Renderable {
     public static final float PPM = 10.f;
 
     //Game Dynamics
-    private boolean allPlayersFinished = false;
     private Rectangle spawnPoint, endPoint;
-    private LinkedList<Player> players = new LinkedList<>();
+    private Player player;
     private Stopwatch stopwatch = new Stopwatch();
 
     //Rendering
     private String backgroundImageName;
     private LinkedList<Block> blocksAfterScope, blocksBeforeScope = new LinkedList<>();
     private LinkedList<Block> blocksInScope = new LinkedList<>();
+    private GameFinishedOverlay gameFinishedOverlay;
 
     //Physics
     private World world;
@@ -49,7 +49,7 @@ public class Level implements Renderable {
     public Level(LevelData levelData) {
         initPhysics();
         prepareFromLevelData(levelData);
-        spawnPlayers();
+        spawnPlayer();
 
         stopwatch.start();
     }
@@ -67,7 +67,7 @@ public class Level implements Renderable {
     }
 
     private void initPhysics() {
-        world = new World(new Vec2(0, -10f));
+        world = new World(new Vec2(0, -70f));
         world.setAllowSleep(true);
         world.setContactListener(new ContactListener() {
             @Override
@@ -124,9 +124,8 @@ public class Level implements Renderable {
         });
     }
 
-    private void spawnPlayers() {
-        Player player = new Player(spawnPoint.x, spawnPoint.y, 50, 75, "player.png", this);
-        players.add(player);
+    private void spawnPlayer() {
+        this.player = new Player(spawnPoint.x, spawnPoint.y, 50, 75, "player.png", this);
     }
 
     public void removeBlock(Block block) {
@@ -189,15 +188,16 @@ public class Level implements Renderable {
     public void render(Renderer renderer) {
         renderer.drawImagePrivate(0, 0, renderer.getWidth(), renderer.getHeight(), backgroundImageName);
 
-        for (Player player : players) {
-            player.render(renderer);
-        }
+        player.render(renderer);
 
         for (Block block : blocksInScope) {
             block.render(renderer);
         }
 
-        if (allPlayersFinished(renderer)) {
+        if (isPlayerFinished()) {
+            if (gameFinishedOverlay == null)
+                gameFinishedOverlay = new GameFinishedOverlay(renderer, stopwatch.getTimeText());
+            gameFinishedOverlay.render(renderer);
             return;
         }
 
@@ -212,22 +212,11 @@ public class Level implements Renderable {
         stopwatch.render(renderer);
     }
 
-    private boolean allPlayersFinished(Renderer renderer) {
-        if (!allPlayersFinished) {
-            for (Player player : players) {
-                if (player.getTime() == 0) {
-                    return false;
-                }
-            }
-            renderer.addRenderable(new GameFinishedOverlay(renderer));
-            allPlayersFinished = true;
-            return true;
-        } else {
-            return true;
-        }
+    private boolean isPlayerFinished() {
+        return player.getTime() != 0;
     }
 
-    /*
+    /**
      * Create Test Level
      */
     public static Level createTestLevel() {
@@ -236,10 +225,12 @@ public class Level implements Renderable {
         //Set Background Image
         levelData.backgroundImage = "background_dark.png";
 
+        /*
         //Create Blocks
         for (int i = -100; i < 2000; i += 50) {
             levelData.blocks.add(new GroundBlock(i, 0, 50, 50, "block.png"));
-        }
+        }*/
+        levelData.blocks.add(new GroundBlock(-100, 0, 2025, 50, "block.png"));
         levelData.blocks.add(new GroundBlock(100, 50, 50, 50, "block.png"));
         levelData.blocks.add(new GroundBlock(150, 100, 50, 50, "block.png"));
         levelData.blocks.add(new GroundBlock(200, 150, 50, 50, "block.png"));

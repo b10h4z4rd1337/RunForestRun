@@ -13,25 +13,25 @@ import org.jbox2d.dynamics.*;
  */
 public abstract class Block implements Renderable {
 
-    private Rectangle rectangle;
-    private String blockImageName;
-    transient private BoxCollisionCallback collisionCallback;
-    transient private Body body;
-    transient private Level level;
+    Rectangle rectangle;
+    String blockImageName;
+    transient BoxCollisionCallback collisionCallback;
+    transient Body body;
+    transient Level level;
 
     public Block(int x, int y, int width, int height, String blockImageName) {
         this.rectangle = new Rectangle(x, y, width, height);
         this.blockImageName = blockImageName;
-    }
-
-    public void setupForLevel(Level level) {
-        setupPhysics(rectangle.x, rectangle.y, rectangle.width, rectangle.height, level.getWorld());
         this.collisionCallback = new BoxCollisionCallback() {
             @Override
             public void contact(BoxCollisionData boxCollisionData) {
 
             }
         };
+    }
+
+    public void setupForLevel(Level level) {
+        setupPhysics(rectangle.x, rectangle.y, rectangle.width, rectangle.height, level.getWorld());
         this.level = level;
     }
 

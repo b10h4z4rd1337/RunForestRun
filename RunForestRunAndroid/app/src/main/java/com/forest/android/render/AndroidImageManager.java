@@ -15,15 +15,19 @@ import java.util.HashMap;
  */
 public class AndroidImageManager {
 
-    private LruCache<String, Bitmap> map;
+    private HashMap<String, Bitmap> map;
     private Context context;
 
     AndroidImageManager(Context context) {
-        this.map = new LruCache<>(10);
+        this.map = new HashMap<>();
         this.context = context;
     }
 
     Bitmap getImage(String name) throws IOException {
+        if (name == null)
+            return null;
+        if (name.isEmpty())
+            return null;
         Bitmap result = map.get(name);
         if (result != null)
             return result;
