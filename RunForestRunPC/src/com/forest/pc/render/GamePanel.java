@@ -93,7 +93,6 @@ public class GamePanel extends JPanel {
 
         if (skip) {
             Level level = Level.createTestLevel();
-            level.createPlayer(0, 50, 50, 80, "player.png", pcInput);
             this.renderer.addRenderable(level);
         } else {
             this.menu = new com.forest.menu.MainMenu(renderer);

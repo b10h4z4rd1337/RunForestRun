@@ -14,15 +14,18 @@ import org.jbox2d.dynamics.*;
 public abstract class Block implements Renderable {
 
     private Rectangle rectangle;
-    private Body body;
-    private Level level;
     private String blockImageName;
-    private BoxCollisionCallback collisionCallback;
+    transient private BoxCollisionCallback collisionCallback;
+    transient private Body body;
+    transient private Level level;
 
-    public Block(int x, int y, int width, int height, String blockImageName, Level level) {
+    public Block(int x, int y, int width, int height, String blockImageName) {
         this.rectangle = new Rectangle(x, y, width, height);
-        setupPhysics(x, y, width, height, level.getWorld());
         this.blockImageName = blockImageName;
+    }
+
+    public void setupForLevel(Level level) {
+        setupPhysics(rectangle.x, rectangle.y, rectangle.width, rectangle.height, level.getWorld());
         this.collisionCallback = new BoxCollisionCallback() {
             @Override
             public void contact(BoxCollisionData boxCollisionData) {
@@ -57,7 +60,7 @@ public abstract class Block implements Renderable {
     }
 
     @Override
-    public void render(Renderer renderer, long deltaTimeInMs) {
+    public void render(Renderer renderer) {
         renderer.drawImage(Math.round(body.getPosition().x * Level.PPM) - rectangle.width / 2,
                 Math.round(body.getPosition().y * Level.PPM) - rectangle.height / 2, rectangle.width, rectangle.height, blockImageName);
     }

@@ -7,8 +7,8 @@ import com.forest.level.Level;
  */
 public class GroundBlock extends Block {
 
-    public GroundBlock(int x, int y, int width, int height, String blockImageName, Level level) {
-        super(x, y, width, height, blockImageName, level);
+    public GroundBlock(int x, int y, int width, int height, String blockImageName) {
+        super(x, y, width, height, blockImageName);
     }
     
 }

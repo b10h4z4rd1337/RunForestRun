@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/RunForestRunAndroid.iml" filepath="$PROJECT_DIR$/RunForestRunAndroid.iml" />
-      <module fileurl="file://$PROJECT_DIR$/RunForestRunCore/RunForestRunCore.iml" filepath="$PROJECT_DIR$/RunForestRunCore/RunForestRunCore.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../RunForestRunCore/RunForestRunCore.iml" filepath="$PROJECT_DIR$/../RunForestRunCore/RunForestRunCore.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

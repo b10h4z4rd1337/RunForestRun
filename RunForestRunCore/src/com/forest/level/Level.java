@@ -6,6 +6,7 @@ import com.forest.level.block.Block;
 import com.forest.level.block.GroundBlock;
 import com.forest.level.powerup.JumpPowerUp;
 import com.forest.level.powerup.PowerUp;
+import com.forest.menu.GameFinishedOverlay;
 import com.forest.render.Renderable;
 import com.forest.render.Renderer;
 import org.jbox2d.callbacks.ContactImpulse;
@@ -26,34 +27,48 @@ import java.util.LinkedList;
  * Created by Mathias on 04.05.2016.
  */
 
-public class Level implements Serializable, Renderable {
+public class Level implements Renderable {
 
     public static final float PPM = 10.f;
 
+    //Game Dynamics
+    private boolean allPlayersFinished = false;
+    private Rectangle spawnPoint, endPoint;
+    private LinkedList<Player> players = new LinkedList<>();
+    private Stopwatch stopwatch = new Stopwatch();
+
+    //Rendering
     private String backgroundImageName;
-
-    private LinkedList<Player> players;
-
-    private LinkedList<Body> bodiesToRemove;
-
-    private LinkedList<Block> blocksAfterScope, blocksBeforeScope;
-    private LinkedList<Block> blocksInScope;
-
+    private LinkedList<Block> blocksAfterScope, blocksBeforeScope = new LinkedList<>();
+    private LinkedList<Block> blocksInScope = new LinkedList<>();
 
     //Physics
     private World world;
+    private LinkedList<Body> bodiesToRemove = new LinkedList<>();
 
-    public Level(String backgroundImageName) {
-        this.backgroundImageName = backgroundImageName;
-        blocksAfterScope = new LinkedList<>();
-        blocksBeforeScope = new LinkedList<>();
-        blocksInScope = new LinkedList<>();
-        bodiesToRemove = new LinkedList<>();
+    public Level(LevelData levelData) {
+        initPhysics();
+        prepareFromLevelData(levelData);
+        spawnPlayers();
 
-        players = new LinkedList<>();
+        stopwatch.start();
+    }
 
+    private void prepareFromLevelData(LevelData levelData) {
+        this.backgroundImageName = levelData.backgroundImage;
+        this.blocksAfterScope = levelData.blocks;
+
+        for (Block block : blocksAfterScope) {
+            block.setupForLevel(this);
+        }
+
+        this.spawnPoint = levelData.spawnPoint;
+        this.endPoint = levelData.endPoint;
+    }
+
+    private void initPhysics() {
         world = new World(new Vec2(0, -10f));
-
+        world.setAllowSleep(true);
         world.setContactListener(new ContactListener() {
             @Override
             public void beginContact(Contact contact) {
@@ -109,6 +124,11 @@ public class Level implements Serializable, Renderable {
         });
     }
 
+    private void spawnPlayers() {
+        Player player = new Player(spawnPoint.x, spawnPoint.y, 50, 75, "player.png", this);
+        players.add(player);
+    }
+
     public void removeBlock(Block block) {
         int index;
         if ((index = blocksBeforeScope.indexOf(block)) != -1) {
@@ -130,34 +150,13 @@ public class Level implements Serializable, Renderable {
         return world;
     }
 
-    public Player createPlayer(int x, int y, int width, int height, String playerImageName, Input input) {
-        Player player = new Player(x, y, width, height, playerImageName, input, this);
-        players.add(player);
-        return player;
+    public Rectangle getEndPoint() {
+        return endPoint;
     }
 
-    public Block createGroundBlock(int x, int y, int width, int height, String blockImageName) {
-        Block block = new GroundBlock(x, y, width, height, blockImageName, this);
-        blocksAfterScope.add(block);
-        Collections.sort(blocksAfterScope, new Comparator<Block>() {
-            @Override
-            public int compare(Block o1, Block o2) {
-                return o1.getX() < o2.getX() ? -1 : 1;
-            }
-        });
-        return block;
-    }
-
-    public PowerUp createJumpPowerUp(int x, int y, String imageName) {
-        PowerUp powerUp = new JumpPowerUp(x, y, imageName, this);
-        blocksAfterScope.add(powerUp);
-        Collections.sort(blocksAfterScope, new Comparator<Block>() {
-            @Override
-            public int compare(Block o1, Block o2) {
-                return o1.getX() < o2.getX() ? -1 : 1;
-            }
-        });
-        return powerUp;
+    public void receivedEndPoint(Player player) {
+        bodiesToRemove.add(player.getBody());
+        player.setTime(stopwatch.getTime());
     }
 
     private int lastCamX = Integer.MIN_VALUE;
@@ -184,49 +183,81 @@ public class Level implements Serializable, Renderable {
     }
 
     private void update(float deltaT) {
-        world.step(60.f / 1000.f, 3, 8);
+        world.step(deltaT, 3, 8);
     }
 
-    /*
-     * Render Level: Player must be rendered first, because it has to apply camera updates which effect block rendering
-     */
-
-    public void render(Renderer renderer, long deltaTimeInMs) {
+    public void render(Renderer renderer) {
         renderer.drawImagePrivate(0, 0, renderer.getWidth(), renderer.getHeight(), backgroundImageName);
 
         for (Player player : players) {
-            player.update(renderer);
-            player.render(renderer, deltaTimeInMs);
+            player.render(renderer);
         }
-
-        update((float)deltaTimeInMs / 1000f);
-        updateBlocks(renderer.getCamBounds());
 
         for (Block block : blocksInScope) {
-            block.render(renderer, deltaTimeInMs);
+            block.render(renderer);
         }
+
+        if (allPlayersFinished(renderer)) {
+            return;
+        }
+
+        update((float)renderer.getDeltaTime() / 1000f);
+        updateBlocks(renderer.getCamBounds());
 
         for (Body body : bodiesToRemove) {
             world.destroyBody(body);
         }
         bodiesToRemove.clear();
+
+        stopwatch.render(renderer);
+    }
+
+    private boolean allPlayersFinished(Renderer renderer) {
+        if (!allPlayersFinished) {
+            for (Player player : players) {
+                if (player.getTime() == 0) {
+                    return false;
+                }
+            }
+            renderer.addRenderable(new GameFinishedOverlay(renderer));
+            allPlayersFinished = true;
+            return true;
+        } else {
+            return true;
+        }
     }
 
     /*
      * Create Test Level
      */
     public static Level createTestLevel() {
-        Level level = new Level("background_dark.png");
-        for (int i = -100; i < 2000; i += 50) {
-            level.createGroundBlock(i, 0, 50, 50, "block.png");
-        }
-        level.createGroundBlock(100, 50, 50, 50, "block.png");
-        level.createGroundBlock(150, 100, 50, 50, "block.png");
-        level.createGroundBlock(200, 150, 50, 50, "block.png");
-        level.createGroundBlock(0, 0, 50, 50, "block.png");
-        level.createJumpPowerUp(100, 100, "");
-        level.createPlayer(0, 50, 50, 80, "player.png", null);
+        LevelData levelData = new LevelData();
 
-        return level;
+        //Set Background Image
+        levelData.backgroundImage = "background_dark.png";
+
+        //Create Blocks
+        for (int i = -100; i < 2000; i += 50) {
+            levelData.blocks.add(new GroundBlock(i, 0, 50, 50, "block.png"));
+        }
+        levelData.blocks.add(new GroundBlock(100, 50, 50, 50, "block.png"));
+        levelData.blocks.add(new GroundBlock(150, 100, 50, 50, "block.png"));
+        levelData.blocks.add(new GroundBlock(200, 150, 50, 50, "block.png"));
+        levelData.blocks.add(new GroundBlock(0, 0, 50, 50, "block.png"));
+
+        //Create PowerUp
+        levelData.blocks.add(new JumpPowerUp(100, 100, ""));
+
+        //Sort Blocks
+        Collections.sort(levelData.blocks, new Comparator<Block>() {
+            @Override
+            public int compare(Block o1, Block o2) {
+                return o1.getX() < o2.getX() ? -1 : 1;
+            }
+        });
+        levelData.spawnPoint = new Rectangle(0, 0, 1, 1);
+        levelData.endPoint = new Rectangle(1950, 0, 1, 1000);
+
+        return new Level(levelData);
     }
 }

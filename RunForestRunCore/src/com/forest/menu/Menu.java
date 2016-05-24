@@ -13,8 +13,8 @@ import java.util.LinkedList;
  */
 public abstract class Menu implements Renderable {
 
-    private LinkedList<Button> buttons;
-    private String backgroundImage;
+    private LinkedList<Button> buttons = new LinkedList<>();
+    private String backgroundImage = "";
 
     private Menu() { }
 
@@ -23,7 +23,6 @@ public abstract class Menu implements Renderable {
     }
 
     public Menu(String backgroundImage) {
-        buttons = new LinkedList<>();
         this.backgroundImage = backgroundImage;
     }
 
@@ -43,10 +42,10 @@ public abstract class Menu implements Renderable {
     }
 
     @Override
-    public void render(Renderer renderer, long deltaTimeInMs) {
-        //renderer.drawImagePrivate(0, 0, renderer.getWidth(), renderer.getHeight(), backgroundImage);
+    public void render(Renderer renderer) {
+        renderer.drawImagePrivate(0, 0, renderer.getWidth(), renderer.getHeight(), backgroundImage);
         for (Button button : buttons) {
-            button.render(renderer, deltaTimeInMs);
+            button.render(renderer);
         }
     }
 }

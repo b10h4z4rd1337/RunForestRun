@@ -1,6 +1,5 @@
 package com.forest.android.render;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
@@ -30,19 +29,11 @@ public class GameView extends View {
     }
 
     {
-        androidRenderer = new AndroidRenderer(this.getWidth(), this.getHeight(), getContext());
         androidInput = new AndroidInput(this.getWidth(), this.getHeight());
+        androidRenderer = new AndroidRenderer(this.getWidth(), this.getHeight(), androidInput, getContext());
         this.setOnTouchListener(androidInput);
 
-        Level level = new Level("background_dark.png");
-        for (int i = -100; i < 1000; i += 50) {
-            level.createGroundBlock(i, 0, 50, 50, "block.png");
-        }
-        level.createGroundBlock(100, 50, 50, 50, "block.png");
-        level.createGroundBlock(150, 100, 50, 50, "block.png");
-        level.createGroundBlock(200, 150, 50, 50, "block.png");
-        level.createGroundBlock(0, 0, 50, 50, "block.png");
-        level.createPlayer(0, 50, 50, 80, "player.png", androidInput);
+        Level level = Level.createTestLevel();
 
         androidRenderer.addRenderable(level);
         androidRenderer.addRenderable(androidInput);

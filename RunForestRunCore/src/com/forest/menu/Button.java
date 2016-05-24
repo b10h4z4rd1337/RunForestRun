@@ -58,7 +58,7 @@ public class Button implements Renderable {
     }
 
     @Override
-    public void render(Renderer renderer, long deltaTimeInMs) {
+    public void render(Renderer renderer) {
         renderer.drawRect(rectangle.x, rectangle.y, rectangle.width, rectangle.height, color);
         renderer.drawString(rectangle.x + rectangle.width / 2 - renderer.getTextWidth(text) / 2, rectangle.y + rectangle.height / 2 - renderer.getTextHeight() / 2, text);
     }

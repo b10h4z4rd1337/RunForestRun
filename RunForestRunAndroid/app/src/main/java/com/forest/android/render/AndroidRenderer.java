@@ -4,7 +4,9 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Rect;
 
+import com.forest.input.Input;
 import com.forest.render.Color;
 import com.forest.render.Renderer;
 
@@ -19,8 +21,8 @@ public class AndroidRenderer extends Renderer {
     private Canvas canvas;
     private Paint paint = new Paint();
 
-    public AndroidRenderer(int width, int height, Context context) {
-        super(width, height);
+    public AndroidRenderer(int width, int height, Input input, Context context) {
+        super(width, height, input);
         imageManager = new AndroidImageManager(context);
     }
 
@@ -49,5 +51,30 @@ public class AndroidRenderer extends Renderer {
         paint.setColor(android.graphics.Color.argb(color.a, color.r, color.g, color.b));
         canvas.drawRect(x, y, x + width, y + height, paint);
         paint.reset();
+    }
+
+    @Override
+    public void drawString(int x, int y, String text, Color color) {
+        paint.setColor(android.graphics.Color.argb(color.a, color.r, color.g, color.b));
+        canvas.drawText(text, x, y, paint);
+    }
+
+    @Override
+    public void setTextSize(int size) {
+        paint.setTextSize(size * 1.4f);
+    }
+
+    @Override
+    public int getTextHeight() {
+        Rect rect = new Rect();
+        paint.getTextBounds("I", 0, 1, rect);
+        return rect.height();
+    }
+
+    @Override
+    public int getTextWidth(String text) {
+        Rect rect = new Rect();
+        paint.getTextBounds(text, 0, text.length(), rect);
+        return rect.width();
     }
 }

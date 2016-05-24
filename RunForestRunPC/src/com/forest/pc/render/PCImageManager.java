@@ -5,6 +5,8 @@ import com.sun.istack.internal.NotNull;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferInt;
 import java.io.IOException;
 import java.util.HashMap;
 
@@ -19,11 +21,15 @@ public class PCImageManager {
         map = new HashMap<>();
     }
 
-    Image getImage(@NotNull String name) throws IOException {
+    Image getImage(String name) throws IOException {
+        if (name == null)
+            return null;
+        if (name.isEmpty())
+            return null;
         if (map.containsKey(name))
             return map.get(name);
         else {
-            Image loadedImage = ImageIO.read(Renderer.class.getResource(name));
+            BufferedImage loadedImage = ImageIO.read(Renderer.class.getResource(name));
             map.put(name, loadedImage);
             return loadedImage;
         }

@@ -6,6 +6,7 @@ package com.forest.render;
 public class Color {
 
     public int r, g, b, a;
+    public static final Color BLACK = new Color(0, 0, 0), WHITE = new Color(255, 255, 255);
 
     public Color(int r, int g, int b, int a) {
         this.r = r;

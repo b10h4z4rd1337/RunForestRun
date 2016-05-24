@@ -177,9 +177,9 @@ public class AndroidInput implements Input, View.OnTouchListener, Renderable {
     }
 
     @Override
-    public void render(Renderer renderer, long deltaTimeInMs) {
+    public void render(Renderer renderer) {
         for (Button button : buttons) {
-            button.render(renderer, deltaTimeInMs);
+            button.render(renderer);
         }
     }
 

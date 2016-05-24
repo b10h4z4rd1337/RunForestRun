@@ -15,8 +15,13 @@ public abstract class PowerUp extends Block {
 
     private static int WIDTH = 26, HEIGHT = 26;
 
-    public PowerUp(int x, int y, String powerUpImageName, final Level level) {
-        super(x, y, WIDTH, HEIGHT, powerUpImageName, level);
+    public PowerUp(int x, int y, String powerUpImageName) {
+        super(x, y, WIDTH, HEIGHT, powerUpImageName);
+    }
+
+    @Override
+    public void setupForLevel(final Level level) {
+        super.setupForLevel(level);
         this.setCollisionCallback(new BoxCollisionCallback() {
             @Override
             public void contact(BoxCollisionData boxCollisionData) {
@@ -27,7 +32,7 @@ public abstract class PowerUp extends Block {
     }
 
     @Override
-    public void render(Renderer renderer, long deltaTimeInMs) {
+    public void render(Renderer renderer) {
         renderer.drawRect(Math.round(getBody().getPosition().x * Level.PPM) - getBounds().width / 2,
                 Math.round(getBody().getPosition().y * Level.PPM) - getBounds().height / 2, getBounds().width, getBounds().height, new com.forest.render.Color(0, 0, 0));//, powerUpImageName);
     }

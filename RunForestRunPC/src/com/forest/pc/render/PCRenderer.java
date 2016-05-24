@@ -3,8 +3,10 @@ package com.forest.pc.render;
 import com.forest.input.Input;
 import com.forest.render.*;
 import com.forest.render.Color;
+import com.sun.istack.internal.NotNull;
 
 import java.awt.*;
+import java.awt.Image;
 import java.io.IOException;
 
 /**
@@ -48,15 +50,15 @@ class PCRenderer extends Renderer {
     }
 
     @Override
-    public void drawString(int x, int y, String text) {
+    public void drawString(int x, int y, String text, Color color) {
         y = this.camera.height - y;
-        graphics.setColor(java.awt.Color.black);
+        graphics.setColor(new java.awt.Color(color.r, color.g, color.b, color.a));
         graphics.drawString(text, x, y);
     }
 
     @Override
     public void setTextSize(int size) {
-        graphics.setFont(graphics.getFont().deriveFont(size));
+        graphics.setFont(graphics.getFont().deriveFont(size * 1.4f));
     }
 
     @Override

@@ -16,18 +16,20 @@ public class Player implements Renderable {
     private float jumpMultiplier = 1.f, speedMultiplier = 1.f;
     private Body body;
     private Rectangle rectangle;
+    private Level level;
     private String playerImageName;
     private boolean applyRight = false, applyLeft = false, rightApplied = false, leftApplied = false;
     private boolean inputApplied = false;
+    private long timeToComplete = 0;
 
-    Player(int x, int y, int width, int height, String playerImageName, Input input, Level level) {
+    Player(int x, int y, int width, int height, String playerImageName, Level level) {
         this.rectangle = new Rectangle(x, y, width, height);
         setupPhysics((float)x, (float)y, (float)width, (float)height, level.getWorld());
         this.playerImageName = playerImageName;
-        setupInput(input);
+        this.level = level;
     }
 
-    public void setupInput(Input input) {
+    private void setupInput(Input input) {
         if (input != null) {
             //Setup input
             input.setPressedUpListener(new Input.ActionCallback() {
@@ -124,16 +126,21 @@ public class Player implements Renderable {
     }
 
     @Override
-    public void render(Renderer renderer, long deltaTimeInMs) {
+    public void render(Renderer renderer) {
+        update(renderer);
         if (!inputApplied)
             setupInput(renderer.getInput());
-        renderer.drawImage(Math.round(body.getPosition().x * Level.PPM) - rectangle.width / 2,
-                Math.round(body.getPosition().y * Level.PPM) - rectangle.height / 2, rectangle.width, rectangle.height, playerImageName);
+        renderer.drawImage(rectangle.x, rectangle.y, rectangle.width, rectangle.height, playerImageName);
     }
 
-    void update(Renderer renderer) {
+    private void update(Renderer renderer) {
         applyInputs();
-        renderer.setCamPos((int)(body.getPosition().x * Level.PPM - rectangle.width / 2) - 100, renderer.getCamBounds().y);
+        this.rectangle.x = Math.round(body.getPosition().x * Level.PPM) - rectangle.width / 2;
+        this.rectangle.y = Math.round(body.getPosition().y * Level.PPM) - rectangle.height / 2;
+        renderer.setCamPos(rectangle.x - 100, renderer.getCamBounds().y);
+        if (rectangle.intersects(level.getEndPoint())) {
+            level.receivedEndPoint(this);
+        }
     }
 
     private void applyInputs() {
@@ -175,5 +182,17 @@ public class Player implements Renderable {
 
     public void setSpeedMultiplier(float speedMultiplier) {
         this.speedMultiplier = speedMultiplier;
+    }
+
+    public Body getBody() {
+        return body;
+    }
+
+    public void setTime(long time) {
+        this.timeToComplete = time;
+    }
+
+    public long getTime() {
+        return timeToComplete;
     }
 }
