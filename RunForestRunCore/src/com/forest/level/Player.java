@@ -13,6 +13,8 @@ import org.jbox2d.dynamics.*;
  */
 public class Player implements Renderable {
 
+    public static final float SPEED_X = 30.f, SPEED_Y = 2000.f;
+
     private float jumpMultiplier = 1.f, speedMultiplier = 1.f;
     private Body body;
     private Rectangle rectangle;
@@ -147,9 +149,9 @@ public class Player implements Renderable {
         if (applyRight && applyLeft)
             return;
 
-        if (applyRight && (!rightApplied || body.getLinearVelocity().x == 0)) {
+        if (applyRight && (!rightApplied || body.getLinearVelocity().x < SPEED_X)) {
             Vec2 vec = body.getLinearVelocity();
-            body.setLinearVelocity(new Vec2(30.f * speedMultiplier, vec.y));
+            body.setLinearVelocity(new Vec2(SPEED_X * speedMultiplier, vec.y));
             rightApplied = true;
         }
 
@@ -159,9 +161,9 @@ public class Player implements Renderable {
             rightApplied = false;
         }
 
-        if (applyLeft && (!leftApplied || body.getLinearVelocity().x == 0)) {
+        if (applyLeft && (!leftApplied || body.getLinearVelocity().x > -SPEED_X)) {
             Vec2 vec = body.getLinearVelocity();
-            body.setLinearVelocity(new Vec2(-30.f * speedMultiplier, vec.y));
+            body.setLinearVelocity(new Vec2(-SPEED_X * speedMultiplier, vec.y));
             leftApplied = true;
         }
 
@@ -174,7 +176,7 @@ public class Player implements Renderable {
 
     private void jump() {
         if (jumpAllowed) {
-            body.applyLinearImpulse(new Vec2(0, 2000.f * jumpMultiplier), body.getWorldCenter());
+            body.applyLinearImpulse(new Vec2(0, SPEED_Y * jumpMultiplier), body.getWorldCenter());
             jumpAllowed = false;
         }
     }

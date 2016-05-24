@@ -160,14 +160,18 @@ public class AndroidInput implements Input, View.OnTouchListener, Renderable {
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        Rectangle tmp = new Rectangle(Math.round(event.getX()), Math.round(height - event.getY()), 1, 1);
+        int index = event.getActionIndex();
+        System.out.println(index);
+        Rectangle tmp = new Rectangle(Math.round(event.getX(index)), Math.round(height - event.getY(index)), 1, 1);
         for (Button button : buttons) {
             if (button.getRectangle().intersects(tmp)) {
-                switch (event.getAction()) {
+                switch (event.getActionMasked()) {
                     case MotionEvent.ACTION_DOWN:
+                    case MotionEvent.ACTION_POINTER_DOWN:
                         button.getPressedCallback().onClick();
                         return true;
                     case MotionEvent.ACTION_UP:
+                    case MotionEvent.ACTION_POINTER_UP:
                         button.getReleasedCallback().onClick();
                         return true;
                 }

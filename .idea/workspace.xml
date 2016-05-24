@@ -1,19 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3fe54031-6970-4918-93a5-8f466eba2583" name="Default" comment="Improved Android performance and prepared structure for LevelBuilder">
+    <list default="true" id="3fe54031-6970-4918-93a5-8f466eba2583" name="Default" comment="Applied issue #4">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Level$2.class" afterPath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Level$2.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Level.class" afterPath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Level.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Player$1.class" afterPath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Player$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Player$10.class" afterPath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Player$10.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Player$2.class" afterPath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Player$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Player$3.class" afterPath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Player$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Player$4.class" afterPath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Player$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Player$5.class" afterPath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Player$5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Player$6.class" afterPath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Player$6.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Player$7.class" afterPath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Player$7.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Player$8.class" afterPath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Player$8.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Player$9.class" afterPath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Player$9.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Player.class" afterPath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Player.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Stopwatch.class" afterPath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Stopwatch.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/block/Block$1.class" afterPath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/block/Block$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/block/Block.class" afterPath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/block/Block.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/block/GroundBlock.class" afterPath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/block/GroundBlock.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/menu/GameFinishedOverlay.class" afterPath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/menu/GameFinishedOverlay.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/build/libs/RunForestRunCore-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/RunForestRunCore/build/libs/RunForestRunCore-1.0-SNAPSHOT.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunPC/build/classes/main/com/forest/pc/render/PCRenderer.class" afterPath="$PROJECT_DIR$/RunForestRunPC/build/classes/main/com/forest/pc/render/PCRenderer.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunAndroid/app/src/main/java/com/forest/android/render/AndroidImageManager.java" afterPath="$PROJECT_DIR$/RunForestRunAndroid/app/src/main/java/com/forest/android/render/AndroidImageManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunAndroid/app/src/main/java/com/forest/android/input/AndroidInput.java" afterPath="$PROJECT_DIR$/RunForestRunAndroid/app/src/main/java/com/forest/android/input/AndroidInput.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/Level.java" afterPath="$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/Level.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/Player.java" afterPath="$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/Player.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/Stopwatch.java" afterPath="$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/Stopwatch.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/block/Block.java" afterPath="$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/block/Block.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/block/GroundBlock.java" afterPath="$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/block/GroundBlock.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/src/com/forest/menu/GameFinishedOverlay.java" afterPath="$PROJECT_DIR$/RunForestRunCore/src/com/forest/menu/GameFinishedOverlay.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunPC/src/com/forest/pc/render/PCRenderer.java" afterPath="$PROJECT_DIR$/RunForestRunPC/src/com/forest/pc/render/PCRenderer.java" />
     </list>
     <ignored path="RunForestRun.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -71,18 +83,16 @@
         <entry file="file://$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/Level.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="417">
-              <caret line="198" column="59" selection-start-line="198" selection-start-column="59" selection-end-line="198" selection-end-column="59" />
+              <caret line="194" column="9" selection-start-line="194" selection-start-column="9" selection-end-line="194" selection-end-column="9" />
               <folding>
                 <element signature="e#4131#4132#0" expanded="true" />
-                <element signature="e#4227#4228#0" expanded="true" />
                 <element signature="e#4722#4723#0" expanded="true" />
-                <element signature="e#4750#4751#0" expanded="true" />
                 <element signature="e#4788#4789#0" expanded="true" />
-                <element signature="e#4819#4820#0" expanded="true" />
+                <element signature="e#4750#4751#0" expanded="true" />
                 <element signature="e#6025#6026#0" expanded="true" />
-                <element signature="e#6065#6066#0" expanded="true" />
                 <element signature="e#6910#6911#0" expanded="true" />
-                <element signature="e#6954#6955#0" expanded="true" />
+                <element signature="e#7586#7765#0" expanded="false" />
+                <element signature="e#7764#7765#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -98,7 +108,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameFinishedOverlay.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GameFinishedOverlay.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/RunForestRunCore/src/com/forest/menu/GameFinishedOverlay.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="405">
@@ -122,14 +132,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Player.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Player.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-30">
-              <caret line="151" column="45" selection-start-line="151" selection-start-column="45" selection-end-line="151" selection-end-column="45" />
+            <state relative-caret-position="75">
+              <caret line="151" column="80" selection-start-line="151" selection-start-column="80" selection-end-line="151" selection-end-column="80" />
               <folding>
-                <element signature="e#5992#5993#0" expanded="true" />
-                <element signature="e#6026#6027#0" expanded="true" />
+                <element signature="e#6075#6076#0" expanded="true" />
+                <element signature="e#6109#6110#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -819,10 +829,10 @@
         <option value="$PROJECT_DIR$/RunForestRunPC/src/com/forest/pc/render/PCRenderer.java" />
         <option value="$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/block/Block.java" />
         <option value="$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/block/GroundBlock.java" />
-        <option value="$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/Player.java" />
         <option value="$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/Stopwatch.java" />
         <option value="$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/Level.java" />
         <option value="$PROJECT_DIR$/RunForestRunCore/src/com/forest/menu/GameFinishedOverlay.java" />
+        <option value="$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/Player.java" />
       </list>
     </option>
   </component>
@@ -1456,7 +1466,14 @@
       <option name="project" value="LOCAL" />
       <updated>1464027654895</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Applied issue #4">
+      <created>1464111732512</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1464111732512</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1471,7 +1488,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32942554" sideWeight="0.50277776" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2848769" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2848769" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1506,7 +1523,8 @@
     <MESSAGE value="Extended Android" />
     <MESSAGE value="Added Main Menu" />
     <MESSAGE value="Improved Android performance and prepared structure for LevelBuilder" />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved Android performance and prepared structure for LevelBuilder" />
+    <MESSAGE value="Applied issue #4" />
+    <option name="LAST_COMMIT_MESSAGE" value="Applied issue #4" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1533,15 +1551,13 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#4131#4132#0" expanded="true" />
-            <element signature="e#4227#4228#0" expanded="true" />
             <element signature="e#4722#4723#0" expanded="true" />
-            <element signature="e#4750#4751#0" expanded="true" />
             <element signature="e#4788#4789#0" expanded="true" />
-            <element signature="e#4819#4820#0" expanded="true" />
+            <element signature="e#4750#4751#0" expanded="true" />
             <element signature="e#6025#6026#0" expanded="true" />
-            <element signature="e#6065#6066#0" expanded="true" />
             <element signature="e#6910#6911#0" expanded="true" />
-            <element signature="e#6954#6955#0" expanded="true" />
+            <element signature="e#7586#7765#0" expanded="false" />
+            <element signature="e#7764#7765#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1838,17 +1854,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-30">
-          <caret line="151" column="45" selection-start-line="151" selection-start-column="45" selection-end-line="151" selection-end-column="45" />
-          <folding>
-            <element signature="e#5992#5993#0" expanded="true" />
-            <element signature="e#6026#6027#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/RunForestRunCore/src/com/forest/menu/Menu.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="194">
@@ -1868,18 +1873,16 @@
     <entry file="file://$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/Level.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="417">
-          <caret line="198" column="59" selection-start-line="198" selection-start-column="59" selection-end-line="198" selection-end-column="59" />
+          <caret line="194" column="9" selection-start-line="194" selection-start-column="9" selection-end-line="194" selection-end-column="9" />
           <folding>
             <element signature="e#4131#4132#0" expanded="true" />
-            <element signature="e#4227#4228#0" expanded="true" />
             <element signature="e#4722#4723#0" expanded="true" />
-            <element signature="e#4750#4751#0" expanded="true" />
             <element signature="e#4788#4789#0" expanded="true" />
-            <element signature="e#4819#4820#0" expanded="true" />
+            <element signature="e#4750#4751#0" expanded="true" />
             <element signature="e#6025#6026#0" expanded="true" />
-            <element signature="e#6065#6066#0" expanded="true" />
             <element signature="e#6910#6911#0" expanded="true" />
-            <element signature="e#6954#6955#0" expanded="true" />
+            <element signature="e#7586#7765#0" expanded="false" />
+            <element signature="e#7764#7765#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1889,6 +1892,17 @@
         <state relative-caret-position="405">
           <caret line="28" column="88" selection-start-line="28" selection-start-column="88" selection-end-line="28" selection-end-column="88" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="151" column="80" selection-start-line="151" selection-start-column="80" selection-end-line="151" selection-end-column="80" />
+          <folding>
+            <element signature="e#6075#6076#0" expanded="true" />
+            <element signature="e#6109#6110#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

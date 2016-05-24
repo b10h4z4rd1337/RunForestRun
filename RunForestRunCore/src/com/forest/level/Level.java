@@ -231,10 +231,6 @@ public class Level implements Renderable {
             levelData.blocks.add(new GroundBlock(i, 0, 50, 50, "block.png"));
         }*/
         levelData.blocks.add(new GroundBlock(-100, 0, 2025, 50, "block.png"));
-        levelData.blocks.add(new GroundBlock(100, 50, 50, 50, "block.png"));
-        levelData.blocks.add(new GroundBlock(150, 100, 50, 50, "block.png"));
-        levelData.blocks.add(new GroundBlock(200, 150, 50, 50, "block.png"));
-        levelData.blocks.add(new GroundBlock(0, 0, 50, 50, "block.png"));
 
         //Create PowerUp
         levelData.blocks.add(new JumpPowerUp(100, 100, ""));
