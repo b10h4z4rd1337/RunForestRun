@@ -1,7 +1,6 @@
 package com.forest.android.render.gl;
 
 import android.opengl.GLES20;
-
 import com.forest.render.Color;
 
 import java.nio.ByteBuffer;

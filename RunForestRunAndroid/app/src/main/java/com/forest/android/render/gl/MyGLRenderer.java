@@ -6,15 +6,13 @@ import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.opengl.GLUtils;
 import android.opengl.Matrix;
-
 import com.forest.android.input.AndroidInput;
 import com.forest.render.Color;
 import com.forest.render.Renderer;
 
-import java.io.IOException;
-
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
+import java.io.IOException;
 
 /**
  * Created by Mathias on 28.05.16.

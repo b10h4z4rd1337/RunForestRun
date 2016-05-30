@@ -2,7 +2,6 @@ package com.forest.android.render.gl;
 
 import android.content.Context;
 import android.opengl.GLSurfaceView;
-
 import com.forest.android.input.AndroidInput;
 import com.forest.level.Level;
 
