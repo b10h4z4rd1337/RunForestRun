@@ -4,12 +4,10 @@ import com.forest.Rectangle;
 import com.forest.level.block.Block;
 import com.forest.level.block.GroundBlock;
 import com.forest.level.powerup.DoubleJumpPowerUp;
-import com.forest.level.powerup.JumpPowerUp;
 import com.forest.level.powerup.SpeedPowerUp;
 import com.forest.menu.GameFinishedOverlay;
 import com.forest.render.Renderable;
 import com.forest.render.Renderer;
-
 import org.jbox2d.callbacks.ContactImpulse;
 import org.jbox2d.callbacks.ContactListener;
 import org.jbox2d.collision.Manifold;
@@ -227,10 +225,6 @@ public class Level implements Renderable {
         //Set Background Image
         levelData.backgroundImage = "Ghosts mit Wald.png";
 
-        //Create Blocks
-        for (int i = -100; i < 2000; i += 50) {
-            levelData.blocks.add(new GroundBlock(i, 0, 50, 50, "block.png"));
-        }
         levelData.blocks.add(new GroundBlock(-100, 0, 2025, 50, "block.png"));
 
         //Create PowerUp
