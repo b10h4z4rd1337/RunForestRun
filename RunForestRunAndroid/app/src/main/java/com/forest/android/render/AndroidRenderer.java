@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
-
 import com.forest.input.Input;
 import com.forest.render.Color;
 import com.forest.render.Renderer;

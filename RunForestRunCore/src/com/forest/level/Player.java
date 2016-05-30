@@ -149,7 +149,7 @@ public class Player implements Renderable {
         if (applyRight && applyLeft)
             return;
 
-        if (applyRight && (!rightApplied || body.getLinearVelocity().x < SPEED_X)) {
+        if (applyRight && (!rightApplied || body.getLinearVelocity().x < SPEED_X * speedMultiplier)) {
             Vec2 vec = body.getLinearVelocity();
             body.setLinearVelocity(new Vec2(SPEED_X * speedMultiplier, vec.y));
             rightApplied = true;
@@ -161,7 +161,7 @@ public class Player implements Renderable {
             rightApplied = false;
         }
 
-        if (applyLeft && (!leftApplied || body.getLinearVelocity().x > -SPEED_X)) {
+        if (applyLeft && (!leftApplied || body.getLinearVelocity().x > -SPEED_X * speedMultiplier)) {
             Vec2 vec = body.getLinearVelocity();
             body.setLinearVelocity(new Vec2(-SPEED_X * speedMultiplier, vec.y));
             leftApplied = true;

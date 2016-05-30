@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-
 import com.forest.android.render.gl.MyGLSurfaceView;
 
 public class MainActivity extends Activity {

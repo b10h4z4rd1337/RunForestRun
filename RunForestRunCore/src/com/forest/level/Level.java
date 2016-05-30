@@ -232,7 +232,7 @@ public class Level implements Renderable {
         levelData.blocks.add(new GroundBlock(-100, 0, 2025, 50, "block.png"));
 
         //Create PowerUp
-        levelData.blocks.add(new JumpPowerUp(100, 100, ""));
+        levelData.blocks.add(new JumpPowerUp(200, 100, ""));
 
         //Sort Blocks
         Collections.sort(levelData.blocks, new Comparator<Block>() {
