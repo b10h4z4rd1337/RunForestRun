@@ -13,6 +13,6 @@ public class JumpPowerUp extends PowerUp {
 
     @Override
     public void applyPowerUp(Player player) {
-        player.setSpeedMultiplier(2.f);
+        player.setJumpMultiplier(1.4f);
     }
 }

@@ -3,7 +3,9 @@ package com.forest.level;
 import com.forest.Rectangle;
 import com.forest.level.block.Block;
 import com.forest.level.block.GroundBlock;
+import com.forest.level.powerup.DoubleJumpPowerUp;
 import com.forest.level.powerup.JumpPowerUp;
+import com.forest.level.powerup.SpeedPowerUp;
 import com.forest.menu.GameFinishedOverlay;
 import com.forest.render.Renderable;
 import com.forest.render.Renderer;
@@ -223,7 +225,7 @@ public class Level implements Renderable {
         LevelData levelData = new LevelData();
 
         //Set Background Image
-        levelData.backgroundImage = "background_dark.png";
+        levelData.backgroundImage = "Ghosts mit Wald.png";
 
         //Create Blocks
         for (int i = -100; i < 2000; i += 50) {
@@ -232,7 +234,8 @@ public class Level implements Renderable {
         levelData.blocks.add(new GroundBlock(-100, 0, 2025, 50, "block.png"));
 
         //Create PowerUp
-        levelData.blocks.add(new JumpPowerUp(200, 100, ""));
+        levelData.blocks.add(new DoubleJumpPowerUp(200, 100, "Booster Icon JUMP.png"));
+        levelData.blocks.add(new SpeedPowerUp(300, 200, "Booster Icon SPEED.png"));
 
         //Sort Blocks
         Collections.sort(levelData.blocks, new Comparator<Block>() {

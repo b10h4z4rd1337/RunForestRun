@@ -85,6 +85,10 @@ public abstract class Block implements Renderable {
         return body;
     }
 
+    public String getBlockImageName() {
+        return blockImageName;
+    }
+
     Level getLevel() {
         return level;
     }

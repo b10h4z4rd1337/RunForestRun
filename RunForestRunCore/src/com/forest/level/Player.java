@@ -15,12 +15,14 @@ public class Player implements Renderable {
 
     public static final float SPEED_X = 30.f, SPEED_Y = 2000.f;
 
+    private int MAX_JUMPS = 1;
+    private int jumpsRemaind = MAX_JUMPS;
     private float jumpMultiplier = 1.f, speedMultiplier = 1.f;
     private Body body;
     private Rectangle rectangle;
     private Level level;
     private String playerImageName;
-    private boolean applyRight = false, applyLeft = false, rightApplied = false, leftApplied = false, jumpAllowed = true;
+    private boolean applyRight = false, applyLeft = false, rightApplied = false, leftApplied = false; //jumpAllowed = true;
     private boolean inputApplied = false;
     private long timeToComplete = 0;
 
@@ -175,14 +177,14 @@ public class Player implements Renderable {
     }
 
     private void jump() {
-        if (jumpAllowed) {
+        if (jumpsRemaind > 0) {
             body.applyLinearImpulse(new Vec2(0, SPEED_Y * jumpMultiplier), body.getWorldCenter());
-            jumpAllowed = false;
+            jumpsRemaind--;
         }
     }
 
     public void allowJump() {
-        jumpAllowed = true;
+        jumpsRemaind = MAX_JUMPS;
     }
 
     public void setJumpMultiplier(float jumpMultiplier) {
@@ -203,5 +205,9 @@ public class Player implements Renderable {
 
     public long getTime() {
         return timeToComplete;
+    }
+
+    public void setMaxJumps(int jumpCount) {
+        this.MAX_JUMPS = jumpCount;
     }
 }

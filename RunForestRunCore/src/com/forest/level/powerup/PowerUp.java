@@ -30,8 +30,12 @@ public abstract class PowerUp extends Block {
 
     @Override
     public void render(Renderer renderer) {
-        renderer.drawRect(Math.round(getBody().getPosition().x * Level.PPM) - getBounds().width / 2 - renderer.getCamBounds().x,
-                Math.round(getBody().getPosition().y * Level.PPM) - getBounds().height / 2, getBounds().width, getBounds().height, new com.forest.render.Color(0, 0, 0));//, powerUpImageName);
+        if (getBlockImageName().isEmpty())
+            renderer.drawRect(Math.round(getBody().getPosition().x * Level.PPM) - getBounds().width / 2,
+                Math.round(getBody().getPosition().y * Level.PPM) - getBounds().height / 2, getBounds().width, getBounds().height, new com.forest.render.Color(0, 0, 0));
+        else
+            renderer.drawImage(Math.round(getBody().getPosition().x * Level.PPM) - getBounds().width / 2,
+                    Math.round(getBody().getPosition().y * Level.PPM) - getBounds().height / 2, getBounds().width, getBounds().height, getBlockImageName());
     }
 
     public abstract void applyPowerUp(Player player);
