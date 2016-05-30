@@ -8,10 +8,14 @@ import com.forest.render.Renderer;
 import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.dynamics.*;
 
+import java.io.Serializable;
+
 /**
  * Created by Mathias on 06.05.16.
  */
-public abstract class Block implements Renderable {
+public abstract class Block implements Renderable, Serializable {
+
+    public static final long serialVersionUID = 1338L;
 
     Rectangle rectangle;
     String blockImageName;

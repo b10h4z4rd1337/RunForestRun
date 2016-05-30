@@ -1,9 +1,13 @@
 package com.forest;
 
+import java.io.Serializable;
+
 /**
  * Created by Mathias on 23.05.16.
  */
-public class Rectangle {
+public class Rectangle implements Serializable {
+
+    public static final long serialVersionUID = 1336L;
 
     public int x;
     public int y;

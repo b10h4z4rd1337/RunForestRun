@@ -2,61 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3fe54031-6970-4918-93a5-8f466eba2583" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RunForestRunCore/res/com/forest/render/Booster Icon JUMP.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RunForestRunCore/res/com/forest/render/Booster Icon SPEED.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RunForestRunCore/res/com/forest/render/Ghosts mit Wald.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RunForestRunCore/res/com/forest/render/Ghosts ohne Wald.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RunForestRunCore/res/com/forest/render/Slime.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules/-404929052/RunForestRunBuilder.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules/-404929052/RunForestRunBuilder_main.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules/-404929052/RunForestRunBuilder_test.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RunForestRunBuilder/build.gradle" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RunForestRunBuilder/src/com/forest/builder/Main.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/powerup/DoubleJumpPowerUp.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/powerup/SpeedPowerUp.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/modules/-327012462/RunForestRun.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/modules/-327012462/RunForestRun_main.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/modules/-327012462/RunForestRun_test.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/modules/-510571405/RunForestRunPC.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/modules/-510571405/RunForestRunPC_main.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/modules/-510571405/RunForestRunPC_test.iml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Level$1.class" afterPath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Level$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Level$2.class" afterPath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Level$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Level.class" afterPath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Level.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Player$1.class" afterPath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Player$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Player$10.class" afterPath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Player$10.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Player$2.class" afterPath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Player$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Player$3.class" afterPath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Player$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Player$4.class" afterPath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Player$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Player$5.class" afterPath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Player$5.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Player$6.class" afterPath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Player$6.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Player$7.class" afterPath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Player$7.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Player$8.class" afterPath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Player$8.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Player$9.class" afterPath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Player$9.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Player.class" afterPath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/Player.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/Rectangle.class" afterPath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/Rectangle.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/LevelData.class" afterPath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/LevelData.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/block/Block$1.class" afterPath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/block/Block$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/block/Block$BoxCollisionData.class" afterPath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/block/Block$BoxCollisionData.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/block/Block.class" afterPath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/block/Block.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/powerup/JumpPowerUp.class" afterPath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/powerup/JumpPowerUp.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/powerup/PowerUp.class" afterPath="$PROJECT_DIR$/RunForestRunCore/build/classes/main/com/forest/level/powerup/PowerUp.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gradle.xml" afterPath="$PROJECT_DIR$/.idea/gradle.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/com_badlogicgames_gdx_gdx_1_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/com_badlogicgames_gdx_gdx_1_2_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/com_badlogicgames_gdx_gdx_box2d_1_9_3.xml" afterPath="$PROJECT_DIR$/.idea/libraries/com_badlogicgames_gdx_gdx_box2d_1_9_3.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/com_badlogicgames_gdx_gdx_tools_1_5_6.xml" afterPath="$PROJECT_DIR$/.idea/libraries/com_badlogicgames_gdx_gdx_tools_1_5_6.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/org_jbox2d_jbox2d_library_2_2_1_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/org_jbox2d_jbox2d_library_2_2_1_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules/RunForestRunCore.iml" afterPath="$PROJECT_DIR$/.idea/modules/RunForestRunCore.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules/RunForestRunCore_main.iml" afterPath="$PROJECT_DIR$/.idea/modules/RunForestRunCore_main.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules/RunForestRunCore_test.iml" afterPath="$PROJECT_DIR$/.idea/modules/RunForestRunCore_test.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules/-404929052/RunForestRunBuilder_main.iml" afterPath="$PROJECT_DIR$/.idea/modules/-404929052/RunForestRunBuilder_main.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules/-404929052/RunForestRunBuilder_test.iml" afterPath="$PROJECT_DIR$/.idea/modules/-404929052/RunForestRunBuilder_test.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/Level.java" afterPath="$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/Level.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/Player.java" afterPath="$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/Player.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunBuilder/build.gradle" afterPath="$PROJECT_DIR$/RunForestRunBuilder/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunBuilder/src/com/forest/builder/Main.java" afterPath="$PROJECT_DIR$/RunForestRunBuilder/src/com/forest/builder/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/src/com/forest/Rectangle.java" afterPath="$PROJECT_DIR$/RunForestRunCore/src/com/forest/Rectangle.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/LevelData.java" afterPath="$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/LevelData.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/block/Block.java" afterPath="$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/block/Block.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/powerup/JumpPowerUp.java" afterPath="$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/powerup/JumpPowerUp.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/powerup/PowerUp.java" afterPath="$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/powerup/PowerUp.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/settings.gradle" afterPath="$PROJECT_DIR$/settings.gradle" />
     </list>
     <ignored path="RunForestRun.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -105,88 +63,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Renderer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/RunForestRunCore/src/com/forest/render/Renderer.java">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/RunForestRunBuilder/src/com/forest/builder/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="344">
-              <caret line="59" column="84" selection-start-line="59" selection-start-column="84" selection-end-line="59" selection-end-column="84" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PCRenderer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/RunForestRunPC/src/com/forest/pc/render/PCRenderer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="663">
-              <caret line="44" column="8" selection-start-line="44" selection-start-column="8" selection-end-line="44" selection-end-column="8" />
+            <state relative-caret-position="297">
+              <caret line="18" column="34" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DoubleJumpPowerUp.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/powerup/DoubleJumpPowerUp.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="29" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
-              <folding>
-                <element signature="e#228#229#0" expanded="true" />
-                <element signature="e#273#274#0" expanded="true" />
-                <element signature="e#334#335#0" expanded="true" />
-                <element signature="e#371#372#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Player.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/Player.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="509">
-              <caret line="210" column="35" selection-start-line="210" selection-start-column="35" selection-end-line="210" selection-end-column="35" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#6187#6188#0" expanded="true" />
-                <element signature="e#6227#6228#0" expanded="true" />
-                <element signature="e#6701#6702#0" expanded="true" />
-                <element signature="e#6743#6744#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Level.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/Level.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="365">
-              <caret line="227" column="52" selection-start-line="227" selection-start-column="52" selection-end-line="227" selection-end-column="52" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="settings.gradle" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/settings.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="28" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PowerUp.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/powerup/PowerUp.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="33" column="103" selection-start-line="33" selection-start-column="103" selection-end-line="33" selection-end-column="103" />
-              <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#616#617#0" expanded="true" />
+                <element signature="e#685#686#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -873,7 +758,6 @@
         <option value="$PROJECT_DIR$/RunForestRunPC/src/com/forest/pc/render/GamePanel.java" />
         <option value="$PROJECT_DIR$/RunForestRunCore/src/com/forest/menu/Menu.java" />
         <option value="$PROJECT_DIR$/RunForestRunCore/src/com/forest/render/Color.java" />
-        <option value="$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/LevelData.java" />
         <option value="$PROJECT_DIR$/RunForestRunCore/src/com/forest/render/Image.java" />
         <option value="$PROJECT_DIR$/RunForestRunPC/src/com/forest/pc/render/PCImageManager.java" />
         <option value="$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/block/GroundBlock.java" />
@@ -885,13 +769,16 @@
         <option value="$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/powerup/JumpPowerUp.java" />
         <option value="$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/Player.java" />
         <option value="$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/powerup/DoubleJumpPowerUp.java" />
-        <option value="$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/block/Block.java" />
         <option value="$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/powerup/PowerUp.java" />
         <option value="$PROJECT_DIR$/RunForestRunPC/src/com/forest/pc/render/PCRenderer.java" />
         <option value="$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/Level.java" />
-        <option value="$PROJECT_DIR$/RunForestRunBuilder/src/com/forest/builder/Main.java" />
         <option value="$PROJECT_DIR$/settings.gradle" />
+        <option value="$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/block/SlimeBlock.java" />
         <option value="$PROJECT_DIR$/RunForestRunBuilder/build.gradle" />
+        <option value="$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/LevelData.java" />
+        <option value="$PROJECT_DIR$/RunForestRunBuilder/src/com/forest/builder/Main.java" />
+        <option value="$PROJECT_DIR$/RunForestRunCore/src/com/forest/Rectangle.java" />
+        <option value="$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/block/Block.java" />
       </list>
     </option>
   </component>
@@ -948,56 +835,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="RunForestRun" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RunForestRun" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RunForestRun" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RunForestRunPC" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RunForestRun" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RunForestRun" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RunForestRunBuilder" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RunForestRun" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RunForestRun" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="RunForestRunBuilder" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="builder" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1371,7 +1208,14 @@
       <option name="project" value="LOCAL" />
       <updated>1464566908476</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Added PowerUps and started LevelBuilder">
+      <created>1464590525350</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1464590525350</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1386,7 +1230,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32942554" sideWeight="0.50277776" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28423476" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28423476" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32942554" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1452,7 +1296,8 @@
     <MESSAGE value="Applied issue #4" />
     <MESSAGE value="Applied issue #5" />
     <MESSAGE value="Changed Android Render FrameWork to OpenGL and applied Issues #3 and #6" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed Android Render FrameWork to OpenGL and applied Issues #3 and #6" />
+    <MESSAGE value="Added PowerUps and started LevelBuilder" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added PowerUps and started LevelBuilder" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1465,36 +1310,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/block/GroundBlock.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="19" column="11" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#351#638#0" expanded="false" />
-            <element signature="e#637#638#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RunForestRunCore/src/com/forest/render/Renderer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="23" column="53" selection-start-line="23" selection-start-column="53" selection-end-line="23" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/Level.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/RunForestRunCore/src/com/forest/render/Renderer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -1642,18 +1457,6 @@
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/com/badlogicgames/gdx/gdx-box2d/1.9.3/gdx-box2d-1.9.3.jar!/com/badlogic/gdx/physics/box2d/BodyDef.class" />
     <entry file="jar://$MAVEN_REPOSITORY$/com/badlogicgames/gdx/gdx-box2d/1.9.3/gdx-box2d-1.9.3.jar!/com/badlogic/gdx/physics/box2d/Body.class" />
-    <entry file="file://$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/block/GroundBlock.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="11" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#351#638#0" expanded="false" />
-            <element signature="e#637#638#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/RunForestRunCore/src/com/forest/menu/GameFinishedOverlay.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
@@ -1695,14 +1498,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RunForestRunPC/src/com/forest/pc/input/PCInput.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/powerup/SpeedPowerUp.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -1716,21 +1511,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/LevelData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/powerup/JumpPowerUp.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="15" column="36" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
           <folding>
-            <element signature="e#353#354#0" expanded="true" />
-            <element signature="e#399#400#0" expanded="true" />
+            <element signature="e#353#354#0" expanded="false" />
+            <element signature="e#399#400#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1757,34 +1544,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/powerup/DoubleJumpPowerUp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="29" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
-          <folding>
-            <element signature="e#228#229#0" expanded="true" />
-            <element signature="e#273#274#0" expanded="true" />
-            <element signature="e#334#335#0" expanded="true" />
-            <element signature="e#371#372#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/RunForestRunCore/res/com/forest/render/Booster Icon SPEED.png">
       <provider selected="true" editor-type-id="images">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/block/Block.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
-          <caret line="89" column="5" selection-start-line="89" selection-start-column="5" selection-end-line="89" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2697#2698#0" expanded="true" />
-            <element signature="e#2734#2735#0" expanded="true" />
-          </folding>
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/powerup/PowerUp.java">
@@ -1794,24 +1556,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RunForestRunPC/src/com/forest/pc/render/PCRenderer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="44" column="8" selection-start-line="44" selection-start-column="8" selection-end-line="44" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RunForestRunBuilder/src/com/forest/builder/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1831,20 +1575,118 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/block/SlimeBlock.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="26" column="4" selection-start-line="26" selection-start-column="4" selection-end-line="26" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/RunForestRunBuilder/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
+        <state relative-caret-position="204">
+          <caret line="12" column="43" selection-start-line="12" selection-start-column="43" selection-end-line="12" selection-end-column="43" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/Level.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="227" column="52" selection-start-line="227" selection-start-column="52" selection-end-line="227" selection-end-column="52" />
+        <state relative-caret-position="339">
+          <caret line="240" column="8" selection-start-line="240" selection-start-column="8" selection-end-line="245" selection-end-column="11" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_45/src.zip!/java/io/Serializable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="356">
+          <caret line="150" column="42" selection-start-line="150" selection-start-column="26" selection-end-line="150" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/block/GroundBlock.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="33" column="13" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
+          <folding>
+            <element signature="e#351#638#0" expanded="true" />
+            <element signature="e#637#638#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RunForestRunCore/src/com/forest/Rectangle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="9" column="52" selection-start-line="9" selection-start-column="52" selection-end-line="9" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/LevelData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="21" column="25" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/block/Block.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="17" column="52" selection-start-line="17" selection-start-column="52" selection-end-line="17" selection-end-column="52" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2797#2798#0" expanded="true" />
+            <element signature="e#2834#2835#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RunForestRunCore/src/com/forest/level/powerup/DoubleJumpPowerUp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+          <folding>
+            <element signature="e#228#229#0" expanded="true" />
+            <element signature="e#273#274#0" expanded="true" />
+            <element signature="e#334#335#0" expanded="true" />
+            <element signature="e#371#372#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RunForestRunPC/src/com/forest/pc/render/PCRenderer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="663">
+          <caret line="44" column="8" selection-start-line="44" selection-start-column="8" selection-end-line="44" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RunForestRunPC/src/com/forest/pc/input/PCInput.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RunForestRunBuilder/src/com/forest/builder/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="18" column="34" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#616#617#0" expanded="true" />
+            <element signature="e#685#686#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1901,7 +1743,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>RunForestRunBuilder_main|RunForestRunBuilder</last-edited>
+          <last-edited>RunForestRunPC_main|RunForestRunPC</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

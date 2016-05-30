@@ -11,12 +11,14 @@ import java.util.LinkedList;
  */
 public class LevelData implements Serializable {
 
-    String backgroundImage = "";
-    Rectangle spawnPoint = new Rectangle(0, 0, 0, 0),
+    public static final long serialVersionUID = 1337L;
+
+    public String backgroundImage = "";
+    public Rectangle spawnPoint = new Rectangle(0, 0, 0, 0),
             endPoint = new Rectangle(0, 0, 0, 0);
     /**
      * List of Blocks must be sorted by x-coordinate
      */
-    LinkedList<Block> blocks = new LinkedList<>();
+    public LinkedList<Block> blocks = new LinkedList<>();
 
 }

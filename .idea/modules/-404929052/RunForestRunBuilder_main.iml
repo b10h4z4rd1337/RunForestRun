@@ -13,6 +13,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Gradle: org.jbox2d:jbox2d-library:2.2.1.1" level="project" />
-    <orderEntry type="module" module-name="RunForestRunCore_main" scope="RUNTIME" />
+    <orderEntry type="module" module-name="RunForestRunPC_main" />
+    <orderEntry type="module" module-name="RunForestRunCore_main" />
   </component>
 </module>
