@@ -3,9 +3,6 @@ package com.forest.android.render;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.LruCache;
-
-import com.forest.render.Renderer;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -18,12 +15,12 @@ public class AndroidImageManager {
     private HashMap<String, Bitmap> map;
     private Context context;
 
-    AndroidImageManager(Context context) {
+    public AndroidImageManager(Context context) {
         this.map = new HashMap<>();
         this.context = context;
     }
 
-    Bitmap getImage(String name) throws IOException {
+    public Bitmap getImage(String name) throws IOException {
         if (name == null)
             return null;
         if (name.isEmpty())

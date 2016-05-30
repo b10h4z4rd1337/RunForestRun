@@ -48,7 +48,6 @@ public abstract class Block implements Renderable {
         fixtureDef.restitution = 0f;
         fixtureDef.filter.categoryBits = 3;
         fixtureDef.filter.maskBits = 2;
-        fixtureDef.userData = this;
 
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyType.STATIC;
@@ -56,6 +55,7 @@ public abstract class Block implements Renderable {
         bodyDef.fixedRotation = true;
 
         this.body = world.createBody(bodyDef);
+        this.body.setUserData(this);
         this.body.createFixture(fixtureDef);
     }
 

@@ -115,7 +115,6 @@ public class Player implements Renderable {
         fixtureDef.restitution = 0f;
         fixtureDef.filter.categoryBits = 3;
         fixtureDef.filter.maskBits = 2;
-        fixtureDef.userData = this;
 
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyType.DYNAMIC;
@@ -124,6 +123,7 @@ public class Player implements Renderable {
 
         this.body = world.createBody(bodyDef);
         this.body.setTransform(new Vec2((x + width) / Level.PPM, (y + height) / Level.PPM), 0);
+        this.body.setUserData(this);
         this.body.createFixture(fixtureDef);
     }
 

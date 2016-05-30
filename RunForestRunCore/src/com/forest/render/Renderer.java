@@ -3,7 +3,6 @@ package com.forest.render;
 import com.forest.Rectangle;
 import com.forest.input.Input;
 
-import java.util.LinkedList;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
@@ -32,13 +31,13 @@ public abstract class Renderer {
         for (Renderable renderable : thingsToRender) {
             renderable.render(this);
         }
-
+/*
         long timeToRender = System.currentTimeMillis() - timeNow;
         if (timeToRender < 1000.0 / 60.0) {
             try {
                 Thread.sleep((long) (1000.0 / 60.0 - timeToRender));
             } catch (Exception ignored) { }
-        }
+        }*/
     }
 
     public void setCamPos(int x, int y) {

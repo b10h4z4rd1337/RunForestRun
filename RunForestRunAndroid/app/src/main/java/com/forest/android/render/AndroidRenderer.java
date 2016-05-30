@@ -1,7 +1,6 @@
 package com.forest.android.render;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
@@ -9,8 +8,6 @@ import android.graphics.Rect;
 import com.forest.input.Input;
 import com.forest.render.Color;
 import com.forest.render.Renderer;
-
-import java.io.IOException;
 
 /**
  * Created by Mathias on 14.05.16.
@@ -30,7 +27,7 @@ public class AndroidRenderer extends Renderer {
         this.canvas = canvas;
     }
 
-    public void drawImagePrivate(float x, float y, float width, float height, String name) {
+    public void drawImagePrivate(float x, float y, float width, float height, String name) {/*
         y = this.getHeight() - y - height;
         Bitmap bitmap = null;
         try {
@@ -42,7 +39,7 @@ public class AndroidRenderer extends Renderer {
             bitmap = Bitmap.createScaledBitmap(bitmap, (int)width, (int)height, false);
             canvas.drawBitmap(bitmap, x, y, paint);
             paint.reset();
-        }
+        }*/
     }
 
     @Override

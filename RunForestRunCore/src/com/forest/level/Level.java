@@ -1,14 +1,13 @@
 package com.forest.level;
 
 import com.forest.Rectangle;
-import com.forest.input.Input;
 import com.forest.level.block.Block;
 import com.forest.level.block.GroundBlock;
 import com.forest.level.powerup.JumpPowerUp;
-import com.forest.level.powerup.PowerUp;
 import com.forest.menu.GameFinishedOverlay;
 import com.forest.render.Renderable;
 import com.forest.render.Renderer;
+
 import org.jbox2d.callbacks.ContactImpulse;
 import org.jbox2d.callbacks.ContactListener;
 import org.jbox2d.collision.Manifold;
@@ -18,7 +17,6 @@ import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.World;
 import org.jbox2d.dynamics.contacts.Contact;
 
-import java.io.Serializable;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -75,14 +73,14 @@ public class Level implements Renderable {
                 Player player = null;
                 Block block = null;
 
-                if (contact.getFixtureA().getUserData() instanceof Player && contact.getFixtureB().getUserData() instanceof Block) {
-                    player = (Player) contact.getFixtureA().getUserData();
-                    block = (Block) contact.getFixtureB().getUserData();
+                if (contact.getFixtureA().getBody().getUserData() instanceof Player && contact.getFixtureB().getBody().getUserData() instanceof Block) {
+                    player = (Player) contact.getFixtureA().getBody().getUserData();
+                    block = (Block) contact.getFixtureB().getBody().getUserData();
                 }
 
-                if (contact.getFixtureB().getUserData() instanceof Player && contact.getFixtureA().getUserData() instanceof Block) {
-                    player = (Player) contact.getFixtureB().getUserData();
-                    block = (Block) contact.getFixtureA().getUserData();
+                if (contact.getFixtureB().getBody().getUserData() instanceof Player && contact.getFixtureA().getBody().getUserData() instanceof Block) {
+                    player = (Player) contact.getFixtureB().getBody().getUserData();
+                    block = (Block) contact.getFixtureA().getBody().getUserData();
                 }
 
                 if (block != null) {
@@ -121,6 +119,7 @@ public class Level implements Renderable {
             public void postSolve(Contact contact, ContactImpulse contactImpulse) {
 
             }
+
         });
     }
 
@@ -183,6 +182,7 @@ public class Level implements Renderable {
 
     private void update(float deltaT) {
         world.step(deltaT, 3, 8);
+        System.out.println(deltaT);
     }
 
     public void render(Renderer renderer) {
@@ -225,11 +225,10 @@ public class Level implements Renderable {
         //Set Background Image
         levelData.backgroundImage = "background_dark.png";
 
-        /*
         //Create Blocks
         for (int i = -100; i < 2000; i += 50) {
             levelData.blocks.add(new GroundBlock(i, 0, 50, 50, "block.png"));
-        }*/
+        }
         levelData.blocks.add(new GroundBlock(-100, 0, 2025, 50, "block.png"));
 
         //Create PowerUp

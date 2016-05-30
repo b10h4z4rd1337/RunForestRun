@@ -4,9 +4,6 @@ import com.forest.level.block.Block;
 import com.forest.level.Level;
 import com.forest.level.Player;
 import com.forest.render.*;
-import org.jbox2d.dynamics.*;
-
-import java.awt.*;
 
 /**
  * Created by Mathias on 15.05.16.
