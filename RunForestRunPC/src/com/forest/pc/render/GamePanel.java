@@ -1,9 +1,6 @@
 package com.forest.pc.render;
 
-import com.forest.input.Input;
 import com.forest.level.Level;
-import com.forest.menu.*;
-import com.forest.pc.Main;
 import com.forest.pc.input.PCInput;
 
 import javax.swing.*;
@@ -18,7 +15,8 @@ import java.awt.event.MouseListener;
  */
 public class GamePanel extends JPanel {
 
-    public static final int WIDTH = 600, HEIGHT = 400;
+    private static final int WIDTH = 600, HEIGHT = 400;
+
     private PCRenderer renderer;
     private PCInput pcInput;
     private com.forest.menu.Menu menu;
@@ -26,12 +24,7 @@ public class GamePanel extends JPanel {
     public GamePanel() {
         this.pcInput = new PCInput();
         this.renderer = new PCRenderer(WIDTH, HEIGHT, pcInput);
-        SwingUtilities.invokeLater(GamePanel.this::init);
-    }
 
-    private void init() {
-        JFrame frame = new JFrame("RunForestRun");
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.addComponentListener(new ComponentListener() {
             @Override
             public void componentResized(ComponentEvent e) {
@@ -85,11 +78,9 @@ public class GamePanel extends JPanel {
         this.addKeyListener(pcInput);
         this.setFocusable(true);
         this.requestFocus();
-        frame.setContentPane(this);
-        frame.pack();
-        frame.setVisible(true);
 
-        boolean skip = false;
+        // For testing only
+        boolean skip = true;
 
         if (skip) {
             Level level = Level.createTestLevel();

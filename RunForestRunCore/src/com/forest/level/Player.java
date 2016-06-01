@@ -18,12 +18,15 @@ public class Player implements Renderable {
     private int MAX_JUMPS = 1;
     private int jumpsRemaind = MAX_JUMPS;
     private float jumpMultiplier = 1.f, speedMultiplier = 1.f;
+
     private Body body;
     private Rectangle rectangle;
     private Level level;
     private String playerImageName;
-    private boolean applyRight = false, applyLeft = false, rightApplied = false, leftApplied = false; //jumpAllowed = true;
-    private boolean inputApplied = false;
+
+    private boolean applyRight = false, applyLeft = false, rightApplied = false,
+            leftApplied = false, inputApplied = false, firstMove = true;
+
     private long timeToComplete = 0;
 
     Player(int x, int y, int width, int height, String playerImageName, Level level) {
@@ -131,9 +134,9 @@ public class Player implements Renderable {
 
     @Override
     public void render(Renderer renderer) {
-        update(renderer);
         if (!inputApplied)
             setupInput(renderer.getInput());
+        update(renderer);
         renderer.drawImage(rectangle.x, rectangle.y, rectangle.width, rectangle.height, playerImageName);
     }
 
@@ -155,24 +158,37 @@ public class Player implements Renderable {
             Vec2 vec = body.getLinearVelocity();
             body.setLinearVelocity(new Vec2(SPEED_X * speedMultiplier, vec.y));
             rightApplied = true;
+
+            checkStopwatch();
         }
 
         if (!applyRight && rightApplied) {
             Vec2 vec = body.getLinearVelocity();
             body.setLinearVelocity(new Vec2(0.f, vec.y));
             rightApplied = false;
+
+            checkStopwatch();
         }
 
         if (applyLeft && (!leftApplied || body.getLinearVelocity().x > -SPEED_X * speedMultiplier)) {
             Vec2 vec = body.getLinearVelocity();
             body.setLinearVelocity(new Vec2(-SPEED_X * speedMultiplier, vec.y));
             leftApplied = true;
+
+            checkStopwatch();
         }
 
         if (!applyLeft && leftApplied) {
             Vec2 vec = body.getLinearVelocity();
             body.setLinearVelocity(new Vec2(0.f, vec.y));
             leftApplied = false;
+        }
+    }
+
+    private void checkStopwatch() {
+        if (firstMove) {
+            firstMove = false;
+            level.startStopwatch();
         }
     }
 

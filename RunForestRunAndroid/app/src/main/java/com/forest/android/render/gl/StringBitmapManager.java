@@ -1,33 +1,19 @@
 package com.forest.android.render.gl;
 
-import android.graphics.*;
-
-import java.util.HashMap;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Rect;
 
 /**
  * Created by Mathias on 29.05.16.
  */
 public class StringBitmapManager {
 
-    private class SavedStringInfo {
-        public String string;
-        public float size;
-
-        public SavedStringInfo(String string, float size) {
-            this.string = string;
-            this.size = size;
-        }
-
-        @Override
-        public int hashCode() {
-            return string.hashCode() + ((Float)size).hashCode();
-        }
-    }
-
     private Canvas canvas = new Canvas();
     private Paint paint = new Paint();
     private float fontSize = 10.f;
-    private HashMap<SavedStringInfo, Integer> map = new HashMap<>();
 
     private Bitmap createBitmapFromString(String text) {
         int width, height;
@@ -42,7 +28,6 @@ public class StringBitmapManager {
             height = 1;
         }
         Bitmap result = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_4444);
-        //Canvas canvas = new Canvas(result);
         canvas.setBitmap(result);
         result.eraseColor(0);
         paint.setColor(Color.WHITE);
@@ -51,24 +36,17 @@ public class StringBitmapManager {
     }
 
     /*
-     * TODO: Implement efficent String Bitmap creating, saving, coloring and reusing
+     * TODO: Implement efficent String Bitmap coloring and reusing
      */
 
     public int getStringTexture(String text) throws Exception {
         if (text == null)
             throw new NullPointerException();
 
-        Integer result = map.get(new SavedStringInfo(text, fontSize));
-        if (result == null) {
-            SavedStringInfo savedStringInfo = new SavedStringInfo(text, fontSize);
-            Bitmap bitmap = createBitmapFromString(text);
-            Integer id = MyGLRenderer.loadBitmapIntoGL(bitmap);
-            bitmap.recycle();
-            map.put(savedStringInfo, id);
-            return id;
-        } else {
-            return result;
-        }
+        Bitmap bitmap = createBitmapFromString(text);
+        Integer id = MyGLRenderer.loadBitmapIntoGL(bitmap);
+        bitmap.recycle();
+        return id;
     }
 
     public void setFontSize(float fontSize) {

@@ -9,7 +9,7 @@ import com.forest.render.Renderer;
  */
 public class Stopwatch implements Renderable {
 
-    private long startTime;
+    private long startTime = 0;
     private int x = 0, y = 0;
 
     public void start() {
@@ -17,7 +17,10 @@ public class Stopwatch implements Renderable {
     }
 
     public long getTime() {
-        return System.currentTimeMillis() - startTime;
+        if (startTime != 0)
+            return System.currentTimeMillis() - startTime;
+        else
+            return 0L;
     }
 
     public String getTimeText() {

@@ -48,8 +48,6 @@ public class Level implements Renderable {
         initPhysics();
         prepareFromLevelData(levelData);
         spawnPlayer();
-
-        stopwatch.start();
     }
 
     private void prepareFromLevelData(LevelData levelData) {
@@ -155,6 +153,10 @@ public class Level implements Renderable {
     public void receivedEndPoint(Player player) {
         bodiesToRemove.add(player.getBody());
         player.setTime(stopwatch.getTime());
+    }
+
+    public void startStopwatch() {
+        stopwatch.start();
     }
 
     private int lastCamX = Integer.MIN_VALUE;
