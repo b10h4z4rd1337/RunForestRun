@@ -5,10 +5,7 @@ import com.forest.pc.input.PCInput;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 
 /**
  * Created by Mathias on 04.05.16.
@@ -25,53 +22,18 @@ public class GamePanel extends JPanel {
         this.pcInput = new PCInput();
         this.renderer = new PCRenderer(WIDTH, HEIGHT, pcInput);
 
-        this.addComponentListener(new ComponentListener() {
+        this.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
                 renderer.setWidth(e.getComponent().getWidth());
                 renderer.setHeight(e.getComponent().getHeight());
             }
-
-            @Override
-            public void componentMoved(ComponentEvent e) {
-
-            }
-
-            @Override
-            public void componentShown(ComponentEvent e) {
-
-            }
-
-            @Override
-            public void componentHidden(ComponentEvent e) {
-
-            }
         });
-        this.addMouseListener(new MouseListener() {
+        this.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (menu != null)
                     menu.performClick(e.getX(), GamePanel.this.renderer.getHeight() - e.getY());
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-
             }
         });
         this.setPreferredSize(new Dimension(WIDTH, HEIGHT));

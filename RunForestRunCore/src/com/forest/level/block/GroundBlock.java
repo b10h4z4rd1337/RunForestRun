@@ -36,7 +36,7 @@ public class GroundBlock extends Block {
                 renderer.drawImage(x, Math.round(body.getPosition().y * Level.PPM) - rectangle.height / 2,
                         rest, rectangle.height, blockImageName);
             } else {
-
+                //TODO: Implement same for height
             }
         } else {
             super.render(renderer);

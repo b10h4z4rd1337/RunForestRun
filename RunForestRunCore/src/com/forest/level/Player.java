@@ -194,6 +194,7 @@ public class Player implements Renderable {
 
     private void jump() {
         if (jumpsRemaind > 0) {
+            body.setLinearVelocity(new Vec2(0, 0));
             body.applyLinearImpulse(new Vec2(0, SPEED_Y * jumpMultiplier), body.getWorldCenter());
             jumpsRemaind--;
         }
