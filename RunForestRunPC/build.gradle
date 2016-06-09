@@ -1,7 +1,9 @@
-version 'unspecified'
+group 'com.forest'
+version '0.5'
 
 apply plugin: 'java'
 
+targetCompatibility = 1.8
 sourceCompatibility = 1.8
 
 repositories {
@@ -9,14 +11,5 @@ repositories {
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.11'
-    compile project (path: ':RunForestRunCore')
-}
-
-sourceSets {
-    main {
-        java {
-            srcDir 'src'
-        }
-    }
+    compile project (':RunForestRunCore')
 }

@@ -1,4 +1,5 @@
 rootProject.name = 'RunForestRun'
-include 'RunForestRunPC'
 include 'RunForestRunCore'
+include 'RunForestRunPC'
 include 'RunForestRunBuilder'
+

@@ -1,26 +1,19 @@
-group 'com.runforestrun'
-version '1.0-SNAPSHOT'
+group 'com.forest'
+version '0.5'
 
 apply plugin: 'java'
+apply plugin: 'maven'
 
 sourceCompatibility = 1.7
+targetCompatibility = 1.7
 
 repositories {
     mavenCentral()
+    flatDir {
+        dirs '../libs'
+    }
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.11'
-    compile 'org.jbox2d:jbox2d-library:2.2.1.1'
-}
-
-sourceSets {
-    main {
-        java {
-            srcDir 'src'
-        }
-        resources {
-            srcDir 'res'
-        }
-    }
+    compile files('../lib/jbox2d-library-2.2.1.1.jar')
 }
