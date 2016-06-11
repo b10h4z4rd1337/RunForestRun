@@ -8,27 +8,21 @@ import com.forest.render.Renderer;
  */
 public class Cloud extends Block {
 
-    public Cloud(int x, int y, String powerUpImageName) {
-        super(x, y, powerUpImageName);
+    public Cloud(int x, int y, String name) {
+        super(x, y, name);
     }
 
     @Override
-    public void setupForLevel(final Level level) {
-        super.setupForLevel(level);
-        this.setCollisionCallback(new BoxCollisionCallback() {
+    public BoxCollisionCallback generateBoxCollisionCallback() {
+        return new BoxCollisionCallback() {
             @Override
             public void contact(BoxCollisionData boxCollisionData) {
                 boxCollisionData.player.allowJump();
                 boxCollisionData.player.jump();
                 boxCollisionData.player.setSpeedMultiplier(1f);
-                level.removeBlock(Cloud.this);
+                getLevel().removeBlock(Cloud.this);
             }
-        });
-    }
-
-    @Override
-    public void render(Renderer renderer) {
-        //TODO: Implement general renderer
+        };
     }
 
 }

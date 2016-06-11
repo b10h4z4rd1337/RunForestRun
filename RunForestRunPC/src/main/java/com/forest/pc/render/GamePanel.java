@@ -1,6 +1,7 @@
 package com.forest.pc.render;
 
 import com.forest.level.Level;
+import com.forest.level.LevelData;
 import com.forest.pc.input.PCInput;
 
 import javax.swing.*;
@@ -18,11 +19,10 @@ public class GamePanel extends JPanel {
     private static final int WIDTH = 600, HEIGHT = 400;
 
     private PCRenderer renderer;
-    private PCInput pcInput;
     private com.forest.menu.Menu menu;
 
-    public GamePanel(Level level, boolean skip) {
-        this.pcInput = new PCInput();
+    public GamePanel(LevelData levelData, boolean skip) {
+        PCInput pcInput = new PCInput();
         this.renderer = new PCRenderer(WIDTH, HEIGHT, pcInput);
 
         this.addComponentListener(new ComponentAdapter() {
@@ -45,7 +45,7 @@ public class GamePanel extends JPanel {
         this.requestFocus();
 
         if (skip) {
-            this.renderer.addRenderable(level);
+            this.renderer.addRenderable(new Level(levelData));
         } else {
             this.menu = new com.forest.menu.MainMenu(renderer);
             this.renderer.addRenderable(this.menu);

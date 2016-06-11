@@ -18,35 +18,24 @@ public abstract class Block implements Renderable, Serializable {
     public static final long serialVersionUID = 1338L;
     public static final int BLOCK_SIDE = 50;
 
-    Rectangle rectangle;
-    String blockImageName;
-    transient BoxCollisionCallback collisionCallback;
-    transient Body body;
-    transient Level level;
+    private Rectangle rectangle;
+    private String blockImageName;
+    private transient BoxCollisionCallback collisionCallback;
+    private transient Body body;
+    private transient Level level;
 
     public Block(int x, int y, String blockImageName) {
         this.rectangle = new Rectangle(x, y, BLOCK_SIDE, BLOCK_SIDE);
         this.blockImageName = blockImageName;
-        this.collisionCallback = new BoxCollisionCallback() {
-            @Override
-            public void contact(BoxCollisionData boxCollisionData) {
-
-            }
-        };
     }
 
-    public void setupForLevel(Level level) {
-        this.collisionCallback = new BoxCollisionCallback() {
-            @Override
-            public void contact(BoxCollisionData boxCollisionData) {
-
-            }
-        };
+    public void setupForLevel(final Level level) {
+        this.collisionCallback = generateBoxCollisionCallback();
         setupPhysics(rectangle.x, rectangle.y, rectangle.width, rectangle.height, level.getWorld());
         this.level = level;
     }
 
-    void setupPhysics(float x, float y, float width, float height, World world) {
+    private void setupPhysics(float x, float y, float width, float height, World world) {
         width /= 2;
         height /= 2;
         PolygonShape shape = new PolygonShape();
@@ -56,7 +45,7 @@ public abstract class Block implements Renderable, Serializable {
         fixtureDef.shape = shape;
         fixtureDef.density = 1;
         fixtureDef.friction = 0;
-        fixtureDef.restitution = 0f;
+        fixtureDef.restitution = getRestitution();
         fixtureDef.filter.categoryBits = 3;
         fixtureDef.filter.maskBits = 2;
 
@@ -70,7 +59,7 @@ public abstract class Block implements Renderable, Serializable {
         this.body.createFixture(fixtureDef);
     }
 
-    void setRectangleLocation() {
+    private void setRectangleLocation() {
         if (body != null) {
             rectangle.x = Math.round(body.getPosition().x * Level.PPM) - rectangle.width / 2;
             rectangle.y = Math.round(body.getPosition().y * Level.PPM) - rectangle.height / 2;
@@ -80,11 +69,33 @@ public abstract class Block implements Renderable, Serializable {
     @Override
     public void render(Renderer renderer) {
         setRectangleLocation();
-        renderer.drawImage(rectangle.x, rectangle.y, rectangle.width, rectangle.height, blockImageName);
-    }
 
-    public void setCollisionCallback(BoxCollisionCallback boxCollisionCallback) {
-        this.collisionCallback = boxCollisionCallback;
+        int imageWidth = rectangle.width, imageHeight = rectangle.height;
+        int biggerVal = Math.max(imageWidth, imageHeight);
+        int otherVal = imageWidth == biggerVal ? imageHeight : imageWidth;
+
+        int origin = Math.round(imageWidth >= imageHeight ? rectangle.x : rectangle.y * Level.PPM);
+        int rest = biggerVal % otherVal;
+        int toDraw = biggerVal - rest;
+        int pos = origin;
+        for (; pos < origin + toDraw; pos += otherVal) {
+            if (imageWidth >= imageHeight) {
+                renderer.drawImage(pos, rectangle.y,
+                        otherVal, otherVal, blockImageName);
+            } else {
+                renderer.drawImage(rectangle.x, pos,
+                        otherVal, otherVal, blockImageName);
+            }
+        }
+
+        if (imageWidth > imageHeight) {
+            renderer.drawImage(pos, rectangle.y,
+                    rest, imageHeight, blockImageName);
+        } else {
+            renderer.drawImage(rectangle.x, pos,
+                    imageWidth, rest, blockImageName);
+        }
+
     }
 
     public BoxCollisionCallback getCollisionCallback() {
@@ -103,11 +114,7 @@ public abstract class Block implements Renderable, Serializable {
         return body;
     }
 
-    public String getBlockImageName() {
-        return blockImageName;
-    }
-
-    Level getLevel() {
+    public Level getLevel() {
         return level;
     }
 
@@ -121,10 +128,12 @@ public abstract class Block implements Renderable, Serializable {
         this.rectangle.height = height;
     }
 
-    public void setBounds(int x, int y, int width, int height) {
-        this.setLocation(x, y);
-        this.setSize(width, height);
+    public abstract BoxCollisionCallback generateBoxCollisionCallback();
+
+    public float getRestitution() {
+        return 0f;
     }
+
 
     public interface BoxCollisionCallback {
         void contact(BoxCollisionData boxCollisionData);

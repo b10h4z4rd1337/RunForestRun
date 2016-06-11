@@ -18,37 +18,14 @@ public class GroundBlock extends Block {
     }
 
     @Override
-    public void setupForLevel(Level level) {
-        super.setupForLevel(level);
-        setCollisionCallback(new BoxCollisionCallback() {
+    public BoxCollisionCallback generateBoxCollisionCallback() {
+        return new BoxCollisionCallback() {
             @Override
             public void contact(BoxCollisionData boxCollisionData) {
                 if (boxCollisionData.side == BoxCollisionData.TOP) {
                     boxCollisionData.player.allowJump();
                 }
             }
-        });
-    }
-
-    @Override
-    public void render(Renderer renderer) {
-        int imageWidth = rectangle.width, imageHeight = rectangle.height;
-        setRectangleLocation();
-        if (imageWidth != imageHeight) {
-            if (imageWidth > imageHeight) {
-                int originX = rectangle.x;
-                int rest = imageWidth % imageHeight;
-                int toDraw = imageWidth - rest;
-                int x = originX;
-                for (; x < originX + toDraw; x += imageHeight) {
-                    renderer.drawImage(x, rectangle.y, rectangle.height, rectangle.height, blockImageName);
-                }
-                renderer.drawImage(x, rectangle.y, rest, rectangle.height, blockImageName);
-            } else {
-                //TODO: Implement same for height
-            }
-        } else {
-            super.render(renderer);
-        }
+        };
     }
 }

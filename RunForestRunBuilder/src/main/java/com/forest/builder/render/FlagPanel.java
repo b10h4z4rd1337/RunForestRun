@@ -5,16 +5,13 @@ import javax.swing.*;
 /**
  * Created by user on 08.06.2016.
  */
-public class FlagPanel extends JPanel {
+class FlagPanel extends JPanel {
 
     private static final String[] flags = new String[] {"START", "END"};
 
-    private BuilderPanel builderPanel;
     private JList<String> jlist;
 
-    public FlagPanel(BuilderPanel builderPanel) {
-        this.builderPanel = builderPanel;
-
+    FlagPanel(final BuilderPanel builderPanel) {
         jlist = new JList<>();
         jlist.setListData(flags);
         jlist.addListSelectionListener(e -> {
@@ -25,7 +22,7 @@ public class FlagPanel extends JPanel {
         this.add(jlist);
     }
 
-    public void resetList() {
+    void resetList() {
         jlist.clearSelection();
     }
 

@@ -3,53 +3,47 @@ package com.forest.builder.render;
 import com.forest.level.block.Block;
 
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by Mathias on 31.05.16.
  */
-public class BlockList extends JPanel {
+class BlockList extends JPanel {
 
-    private List<Class<? super Block>> blockClasses = new ArrayList<>();    //Liste mit Blöcken
-    private List<String> classNames;    //Blockname und Bilder
-    private Map<String, ImageIcon> imageMap;
+    private List<Class<? super Block>> blockClasses = new ArrayList<>();
     private BuilderPanel builderPanel;
     private EditPanel editPanel;
     private FlagPanel flagPanel;
     private JList<String> jlist;
 
-    public BlockList(BuilderPanel builderPanel) throws IOException, ClassNotFoundException {
+    BlockList(BuilderPanel builderPanel) throws IOException, ClassNotFoundException {
         this.editPanel = new EditPanel();
         this.flagPanel = new FlagPanel(builderPanel);
         this.builderPanel = builderPanel;
         loadBlockClasses();
-        this.classNames = loadClassNames();
-        this.imageMap = createImageMap(classNames);
+        List<String> classNames = loadClassNames();
 
         jlist = new JList<>();
         jlist.setListData(classNames.toArray(new String[classNames.size()]));
         jlist.setCellRenderer(new ListRenderer(classNames));
-        jlist.addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                BlockList.this.selectedIndex(e.getFirstIndex());
-            }
-        });
+        jlist.addListSelectionListener(e -> selectedIndex(e.getFirstIndex()));
+        JScrollPane scrollPane = new JScrollPane(jlist);
+
         this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-        this.add(jlist);
+        this.add(scrollPane);
         this.add(flagPanel);
         this.add(editPanel);
         editPanel.setVisible(false);
         this.setBackground(Color.WHITE);
     }
 
+    @SuppressWarnings("unchecked")
     private void loadBlockClasses() throws IOException, ClassNotFoundException {
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         String pack = "com.forest.level.block";
@@ -78,16 +72,18 @@ public class BlockList extends JPanel {
     private class ListRenderer extends DefaultListCellRenderer {
 
         private Font font = new Font("helvitica", Font.BOLD, 24);
+        private List<String> classNames;
         private Map<String, ImageIcon> imageMap;
 
         ListRenderer(List<String> classNames) throws IOException {
-            imageMap = createImageMap(classNames);
+            this.classNames = classNames;
+            this.imageMap = createImageMap(classNames);
         }
 
         @Override
         public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
             JLabel label = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-            label.setIcon(imageMap.get((String) value));
+            label.setIcon(imageMap.get(classNames.get(index)));
             label.setHorizontalTextPosition(JLabel.RIGHT);
             label.setFont(font);
             return label;
@@ -98,7 +94,12 @@ public class BlockList extends JPanel {
     private Map<String, ImageIcon> createImageMap(List<String> list) throws IOException {
         Map<String, ImageIcon> map = new HashMap<>();
         for (String s : list) {
-            ImageIcon icon = new ImageIcon(com.forest.render.Renderer.class.getResource("Slime.png"));
+            URL res = com.forest.render.Renderer.class.getResource(s + ".png");
+            if (res == null)
+                res = com.forest.render.Renderer.class.getResource("GroundBlock.png");
+
+            ImageIcon icon = new ImageIcon(res);
+
             icon.setImage(icon.getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
             map.put(s, icon);
         }
@@ -106,11 +107,7 @@ public class BlockList extends JPanel {
     }
 
     private List<String> loadClassNames() {
-        List<String> names = new LinkedList<>();
-        for (Class<? super Block> clazz : blockClasses) {
-            names.add(clazz.getSimpleName());
-        }
-        return names;
+        return blockClasses.stream().map(Class::getSimpleName).collect(Collectors.toCollection(LinkedList::new));
     }
 
     /*
@@ -120,7 +117,7 @@ public class BlockList extends JPanel {
         builderPanel.setBlockClassToCreate(blockClasses.get(index));
     }
 
-    public void setBlockToEdit(Block lastSelected) {
+    void setBlockToEdit(Block lastSelected) {
         if (lastSelected != null) {
             editPanel.setBlock(lastSelected);
             editPanel.setVisible(true);
@@ -129,11 +126,11 @@ public class BlockList extends JPanel {
         }
     }
 
-    public void resetList() {
+    void resetList() {
         jlist.clearSelection();
     }
 
-    public void clearFlagList() {
+    void clearFlagList() {
         flagPanel.resetList();
     }
 }

@@ -33,7 +33,7 @@ public class BuilderPanel extends JPanel {
         item.addActionListener(e -> SwingUtilities.invokeLater(() -> {
             JFrame frame = new JFrame("RunForestRun");
             frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-            frame.setContentPane(new GamePanel(new Level(gameBuilderPanel.toLevelData()), true));
+            frame.setContentPane(new GamePanel(gameBuilderPanel.toLevelData(), true));
             frame.pack();
             frame.setVisible(true);
         }));
@@ -117,11 +117,8 @@ public class BuilderPanel extends JPanel {
 
         try {
             //Utils.upload(Level.createRandomLevel());
-            gameBuilderPanel.loadFromLevelData(Utils.download());
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            //gameBuilderPanel.loadFromLevelData(Utils.download());
+            gameBuilderPanel.loadFromLevelData(Level.createTestLevel());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -135,27 +132,27 @@ public class BuilderPanel extends JPanel {
         splitPane.invalidate();
     }
 
-    public void setBlockClassToCreate(Class<? super Block> blockClassToCreate) {
+    void setBlockClassToCreate(Class<? super Block> blockClassToCreate) {
         this.flagToCreate = null;
         this.blockClassToCreate = blockClassToCreate;
         this.blockList.clearFlagList();
     }
 
-    public void setFlag(String flag) {
+    void setFlag(String flag) {
         this.flagToCreate = flag;
         this.blockClassToCreate = null;
         this.blockList.resetList();
     }
 
-    public Class<? super Block> getBlockClassToCreate() {
+    Class<? super Block> getBlockClassToCreate() {
         return blockClassToCreate;
     }
 
-    public void setLastSelected(Block lastSelected) {
+    void setLastSelected(Block lastSelected) {
         blockList.setBlockToEdit(lastSelected);
     }
 
-    public String getFlag() {
+    String getFlag() {
         return flagToCreate;
     }
 }

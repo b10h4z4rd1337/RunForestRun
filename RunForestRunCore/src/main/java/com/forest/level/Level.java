@@ -243,7 +243,7 @@ public class Level implements Renderable {
     /**
      * Create Test Level
      */
-    public static Level createTestLevel() {
+    public static LevelData createTestLevel() {
         LevelData levelData = new LevelData();
 
         //Set Background Image
@@ -260,7 +260,7 @@ public class Level implements Renderable {
         levelData.spawnPoint = new Rectangle(0, 0, 1, 1);
         levelData.endPoint = new Rectangle(1950, 0, 1, 1000);
 
-        return new Level(levelData);
+        return levelData;
     }
 
     public static LevelData createRandomLevel() {
