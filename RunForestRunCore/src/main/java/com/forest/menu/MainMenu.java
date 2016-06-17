@@ -14,7 +14,7 @@ public class MainMenu extends Menu {
         startButton.setPressedCallback(new Button.Callback() {
             @Override
             public void onClick() {
-                Level testLevel = new Level(Level.createTestLevel());
+                Level testLevel = Level.createTestLevel();
                 renderer.clear();
                 renderer.addRenderable(testLevel);
             }

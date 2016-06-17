@@ -1,5 +1,7 @@
 package com.forest.level.block;
 
+import com.forest.level.Level;
+import com.forest.render.Renderer;
 import org.jbox2d.common.Vec2;
 
 /**

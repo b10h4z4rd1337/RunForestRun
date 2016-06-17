@@ -8,6 +8,7 @@ import com.forest.level.powerup.DoubleJumpPowerUp;
 import com.forest.level.powerup.SpeedPowerUp;
 import com.forest.menu.GameFinishedOverlay;
 import com.forest.menu.GameOverOverlay;
+import com.forest.music.MusicFactory;
 import com.forest.render.Renderable;
 import com.forest.render.Renderer;
 import org.jbox2d.callbacks.ContactImpulse;
@@ -36,6 +37,7 @@ public class Level implements Renderable {
             return o1.getX() < o2.getX() ? -1 : 1;
         }
     };
+    public static MusicFactory MUSIC_FACTORY;
 
     //Game Dynamics
     private Rectangle spawnPoint, endPoint;
@@ -58,6 +60,11 @@ public class Level implements Renderable {
         initPhysics();
         prepareFromLevelData(levelData);
         spawnPlayer();
+        Level.MUSIC_FACTORY.createMusic("mus.wav").start();
+    }
+
+    public static void setMusicFactory(MusicFactory musicFactory) {
+        Level.MUSIC_FACTORY = musicFactory;
     }
 
     private void prepareFromLevelData(LevelData levelData) {
@@ -243,7 +250,7 @@ public class Level implements Renderable {
     /**
      * Create Test Level
      */
-    public static LevelData createTestLevel() {
+    public static Level createTestLevel() {
         LevelData levelData = new LevelData();
 
         //Set Background Image
@@ -260,7 +267,7 @@ public class Level implements Renderable {
         levelData.spawnPoint = new Rectangle(0, 0, 1, 1);
         levelData.endPoint = new Rectangle(1950, 0, 1, 1000);
 
-        return levelData;
+        return new Level(levelData);
     }
 
     public static LevelData createRandomLevel() {

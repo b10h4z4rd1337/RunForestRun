@@ -7,6 +7,7 @@ import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
+        Level.setMusicFactory(new PCMusicFactory());
         JFrame frame = new JFrame("RunForestRun");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setContentPane(new GamePanel(Level.createTestLevel(), false));

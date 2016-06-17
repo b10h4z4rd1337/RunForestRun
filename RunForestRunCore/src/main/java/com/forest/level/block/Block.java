@@ -35,7 +35,7 @@ public abstract class Block implements Renderable, Serializable {
         this.level = level;
     }
 
-    private void setupPhysics(float x, float y, float width, float height, World world) {
+    void setupPhysics(float x, float y, float width, float height, World world) {
         width /= 2;
         height /= 2;
         PolygonShape shape = new PolygonShape();
@@ -59,7 +59,7 @@ public abstract class Block implements Renderable, Serializable {
         this.body.createFixture(fixtureDef);
     }
 
-    private void setRectangleLocation() {
+    void setRectangleLocation() {
         if (body != null) {
             rectangle.x = Math.round(body.getPosition().x * Level.PPM) - rectangle.width / 2;
             rectangle.y = Math.round(body.getPosition().y * Level.PPM) - rectangle.height / 2;
@@ -74,17 +74,17 @@ public abstract class Block implements Renderable, Serializable {
         int biggerVal = Math.max(imageWidth, imageHeight);
         int otherVal = imageWidth == biggerVal ? imageHeight : imageWidth;
 
-        int origin = Math.round(imageWidth >= imageHeight ? rectangle.x : rectangle.y * Level.PPM);
+        int origin = Math.round(imageWidth >= imageHeight ? rectangle.x : rectangle.y * Level.PPM) - otherVal / 2;
         int rest = biggerVal % otherVal;
         int toDraw = biggerVal - rest;
         int pos = origin;
         for (; pos < origin + toDraw; pos += otherVal) {
-            if (imageWidth >= imageHeight) {
+            if (imageWidth > imageHeight) {
                 renderer.drawImage(pos, rectangle.y,
-                        otherVal, otherVal, blockImageName);
+                        imageHeight, imageHeight, blockImageName);
             } else {
-                renderer.drawImage(rectangle.x, pos,
-                        otherVal, otherVal, blockImageName);
+                renderer.drawImage(rectangle.x - rectangle.width / 2, pos,
+                        imageWidth, imageWidth, blockImageName);
             }
         }
 
@@ -92,10 +92,14 @@ public abstract class Block implements Renderable, Serializable {
             renderer.drawImage(pos, rectangle.y,
                     rest, imageHeight, blockImageName);
         } else {
-            renderer.drawImage(rectangle.x, pos,
+            renderer.drawImage(rectangle.x - rectangle.width / 2, pos,
                     imageWidth, rest, blockImageName);
         }
 
+    }
+
+    public void setCollisionCallback(BoxCollisionCallback boxCollisionCallback) {
+        this.collisionCallback = boxCollisionCallback;
     }
 
     public BoxCollisionCallback getCollisionCallback() {
@@ -114,6 +118,10 @@ public abstract class Block implements Renderable, Serializable {
         return body;
     }
 
+    public String getBlockImageName() {
+        return blockImageName;
+    }
+
     public Level getLevel() {
         return level;
     }
@@ -128,12 +136,16 @@ public abstract class Block implements Renderable, Serializable {
         this.rectangle.height = height;
     }
 
+    public void setBounds(int x, int y, int width, int height) {
+        this.setLocation(x, y);
+        this.setSize(width, height);
+    }
+
     public abstract BoxCollisionCallback generateBoxCollisionCallback();
 
     public float getRestitution() {
         return 0f;
     }
-
 
     public interface BoxCollisionCallback {
         void contact(BoxCollisionData boxCollisionData);
