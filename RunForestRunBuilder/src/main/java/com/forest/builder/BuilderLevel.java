@@ -30,12 +30,12 @@ public class BuilderLevel implements Renderable {
         Collections.sort(this.blocksInScope, Level.BLOCK_COMPARATOR);
     }
 
-    public void setStartPoint(int x) {
-        spawnPoint = new Rectangle(x, 0, 5, 100);
+    public void setStartPoint(int x, int y) {
+        spawnPoint = new Rectangle(x, y, 5, 5);
     }
 
     public void setEndPoint(int x) {
-        endPoint = new Rectangle(x, 0, 5, 100);
+        endPoint = new Rectangle(x, 0, 5, 10000);
     }
 
     public void setBackgroundImageName(String backgroundImageName) {
@@ -71,7 +71,7 @@ public class BuilderLevel implements Renderable {
         renderer.drawImagePrivate(0, 0, renderer.getWidth(), renderer.getHeight(), backgroundImageName);
 
         if (spawnPoint != null)
-            renderer.drawRect(spawnPoint.x, spawnPoint.y, spawnPoint.width, renderer.getHeight(), Color.GREEN);
+            renderer.drawRect(spawnPoint.x, spawnPoint.y, spawnPoint.width, spawnPoint.height, Color.GREEN);
 
         if (endPoint != null)
             renderer.drawRect(endPoint.x, endPoint.y, endPoint.width, renderer.getHeight(), Color.BLUE);

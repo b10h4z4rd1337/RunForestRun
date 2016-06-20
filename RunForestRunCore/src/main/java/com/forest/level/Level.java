@@ -139,7 +139,7 @@ public class Level implements Renderable {
     }
 
     private void spawnPlayer() {
-        this.player = new Player(spawnPoint.x, spawnPoint.y, 50, 75, "player.png", this);
+        this.player = new Player(spawnPoint.x, spawnPoint.y, 40, 75, "player.png", this);
     }
 
     public void removeBlock(Block block) {

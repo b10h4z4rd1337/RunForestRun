@@ -14,7 +14,7 @@ import java.lang.reflect.InvocationTargetException;
 /**
  * Created by Mathias on 07.06.16.
  */
-class GameBuilderPanel extends JPanel {
+public class GameBuilderPanel extends JPanel {
 
     private static final int WIDTH = 600, HEIGHT = 400;
 
@@ -24,7 +24,7 @@ class GameBuilderPanel extends JPanel {
 
     private Block selected;
 
-    GameBuilderPanel(BuilderPanel builderPanel) {
+    public GameBuilderPanel(BuilderPanel builderPanel) {
         this.builderPanel = builderPanel;
         this.builderLevel = new BuilderLevel();
         this.builderLevel.setBackgroundImageName("Background_dark.png");
@@ -63,10 +63,13 @@ class GameBuilderPanel extends JPanel {
                     } else {
                         String flag = builderPanel.getFlag();
                         int x = e.getX() + renderer.getCamBounds().x;
+                        int y = renderer.getHeight() - e.getY();
                         if (flag.equals("START")) {
-                            builderLevel.setStartPoint(x);
+                            builderLevel.setStartPoint(x,y);
+
                         } else {
                             builderLevel.setEndPoint(x);
+
                         }
                     }
                 }
@@ -96,11 +99,11 @@ class GameBuilderPanel extends JPanel {
         this.renderer.addRenderable(builderLevel);
     }
 
-    LevelData toLevelData() {
+    public LevelData toLevelData() {
         return builderLevel.toLevelData();
     }
 
-    void loadFromLevelData(LevelData levelData) {
+    public void loadFromLevelData(LevelData levelData) {
         builderLevel.loadFromLevelData(levelData);
     }
 

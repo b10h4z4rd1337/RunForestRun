@@ -24,7 +24,7 @@ import java.net.URISyntaxException;
  */
 public class Utils {
 
-    private static byte[] levelDataToBytes(LevelData levelData) throws IOException {
+    public static byte[] levelDataToBytes(LevelData levelData) throws IOException {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         ObjectOutputStream oos = new ObjectOutputStream(bos);
         oos.writeObject(levelData);
@@ -32,7 +32,7 @@ public class Utils {
         return bos.toByteArray();
     }
 
-    private static String receiveMessage(InputStream is) throws IOException {
+    public static String receiveMessage(InputStream is) throws IOException {
         BufferedReader rd = new BufferedReader(new InputStreamReader(is));
 
         String result = "";
