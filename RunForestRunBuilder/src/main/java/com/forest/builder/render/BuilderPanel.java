@@ -33,7 +33,7 @@ public class BuilderPanel extends JPanel {
         item.addActionListener(e -> SwingUtilities.invokeLater(() -> {
             JFrame frame = new JFrame("RunForestRun");
             frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-            frame.setContentPane(new GamePanel(gameBuilderPanel.toLevelData(), true));
+            frame.setContentPane(new GamePanel(new Level(gameBuilderPanel.toLevelData()), true));
             frame.pack();
             frame.setVisible(true);
         }));
@@ -118,7 +118,7 @@ public class BuilderPanel extends JPanel {
         try {
             //Utils.upload(Level.createRandomLevel());
             //gameBuilderPanel.loadFromLevelData(Utils.download());
-            gameBuilderPanel.loadFromLevelData(Level.createTestLevel());
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -132,27 +132,27 @@ public class BuilderPanel extends JPanel {
         splitPane.invalidate();
     }
 
-    void setBlockClassToCreate(Class<? super Block> blockClassToCreate) {
+    public void setBlockClassToCreate(Class<? super Block> blockClassToCreate) {
         this.flagToCreate = null;
         this.blockClassToCreate = blockClassToCreate;
         this.blockList.clearFlagList();
     }
 
-    void setFlag(String flag) {
+    public void setFlag(String flag) {
         this.flagToCreate = flag;
         this.blockClassToCreate = null;
         this.blockList.resetList();
     }
 
-    Class<? super Block> getBlockClassToCreate() {
+    public Class<? super Block> getBlockClassToCreate() {
         return blockClassToCreate;
     }
 
-    void setLastSelected(Block lastSelected) {
+    public void setLastSelected(Block lastSelected) {
         blockList.setBlockToEdit(lastSelected);
     }
 
-    String getFlag() {
+    public String getFlag() {
         return flagToCreate;
     }
 }

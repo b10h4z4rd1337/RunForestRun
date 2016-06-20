@@ -3,47 +3,53 @@ package com.forest.builder.render;
 import com.forest.level.block.Block;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Created by Mathias on 31.05.16.
  */
-class BlockList extends JPanel {
+public class BlockList extends JPanel {
 
-    private List<Class<? super Block>> blockClasses = new ArrayList<>();
+    private List<Class<? super Block>> blockClasses = new ArrayList<>();    //Liste mit Blöcken
+    private List<String> classNames;    //Blockname und Bilder
+    private Map<String, ImageIcon> imageMap;
     private BuilderPanel builderPanel;
     private EditPanel editPanel;
     private FlagPanel flagPanel;
     private JList<String> jlist;
 
-    BlockList(BuilderPanel builderPanel) throws IOException, ClassNotFoundException {
+    public BlockList(BuilderPanel builderPanel) throws IOException, ClassNotFoundException {
         this.editPanel = new EditPanel();
         this.flagPanel = new FlagPanel(builderPanel);
         this.builderPanel = builderPanel;
         loadBlockClasses();
-        List<String> classNames = loadClassNames();
+        this.classNames = loadClassNames();
+        this.imageMap = createImageMap(classNames);
 
         jlist = new JList<>();
         jlist.setListData(classNames.toArray(new String[classNames.size()]));
         jlist.setCellRenderer(new ListRenderer(classNames));
-        jlist.addListSelectionListener(e -> selectedIndex(e.getFirstIndex()));
-        JScrollPane scrollPane = new JScrollPane(jlist);
-
+        jlist.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                BlockList.this.selectedIndex(e.getFirstIndex());
+            }
+        });
         this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-        this.add(scrollPane);
+        this.add(jlist);
         this.add(flagPanel);
         this.add(editPanel);
         editPanel.setVisible(false);
         this.setBackground(Color.WHITE);
     }
 
-    @SuppressWarnings("unchecked")
     private void loadBlockClasses() throws IOException, ClassNotFoundException {
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         String pack = "com.forest.level.block";
@@ -72,18 +78,16 @@ class BlockList extends JPanel {
     private class ListRenderer extends DefaultListCellRenderer {
 
         private Font font = new Font("helvitica", Font.BOLD, 24);
-        private List<String> classNames;
         private Map<String, ImageIcon> imageMap;
 
         ListRenderer(List<String> classNames) throws IOException {
-            this.classNames = classNames;
-            this.imageMap = createImageMap(classNames);
+            imageMap = createImageMap(classNames);
         }
 
         @Override
         public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
             JLabel label = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-            label.setIcon(imageMap.get(classNames.get(index)));
+            label.setIcon(imageMap.get((String) value));
             label.setHorizontalTextPosition(JLabel.RIGHT);
             label.setFont(font);
             return label;
@@ -107,7 +111,11 @@ class BlockList extends JPanel {
     }
 
     private List<String> loadClassNames() {
-        return blockClasses.stream().map(Class::getSimpleName).collect(Collectors.toCollection(LinkedList::new));
+        List<String> names = new LinkedList<>();
+        for (Class<? super Block> clazz : blockClasses) {
+            names.add(clazz.getSimpleName());
+        }
+        return names;
     }
 
     /*
@@ -117,7 +125,7 @@ class BlockList extends JPanel {
         builderPanel.setBlockClassToCreate(blockClasses.get(index));
     }
 
-    void setBlockToEdit(Block lastSelected) {
+    public void setBlockToEdit(Block lastSelected) {
         if (lastSelected != null) {
             editPanel.setBlock(lastSelected);
             editPanel.setVisible(true);
@@ -126,11 +134,11 @@ class BlockList extends JPanel {
         }
     }
 
-    void resetList() {
+    public void resetList() {
         jlist.clearSelection();
     }
 
-    void clearFlagList() {
+    public void clearFlagList() {
         flagPanel.resetList();
     }
 }

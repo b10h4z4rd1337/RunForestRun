@@ -74,16 +74,16 @@ public abstract class Block implements Renderable, Serializable {
         int biggerVal = Math.max(imageWidth, imageHeight);
         int otherVal = imageWidth == biggerVal ? imageHeight : imageWidth;
 
-        int origin = Math.round(imageWidth >= imageHeight ? rectangle.x : rectangle.y * Level.PPM) - otherVal / 2;
+        int origin = Math.round(imageWidth >= imageHeight ? rectangle.x : rectangle.y);
         int rest = biggerVal % otherVal;
         int toDraw = biggerVal - rest;
         int pos = origin;
         for (; pos < origin + toDraw; pos += otherVal) {
-            if (imageWidth > imageHeight) {
+            if (imageWidth >= imageHeight) {
                 renderer.drawImage(pos, rectangle.y,
                         imageHeight, imageHeight, blockImageName);
             } else {
-                renderer.drawImage(rectangle.x - rectangle.width / 2, pos,
+                renderer.drawImage(rectangle.x, pos,
                         imageWidth, imageWidth, blockImageName);
             }
         }

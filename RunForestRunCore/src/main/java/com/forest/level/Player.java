@@ -134,6 +134,7 @@ public class Player implements Renderable {
 
     @Override
     public void render(Renderer renderer) {
+        renderer.setCamPos(rectangle.x - 100, renderer.getCamBounds().y);
         if (!inputApplied)
             setupInput(renderer.getInput());
         update(renderer);
@@ -144,7 +145,6 @@ public class Player implements Renderable {
         applyInputs();
         this.rectangle.x = Math.round(body.getPosition().x * Level.PPM) - rectangle.width / 2;
         this.rectangle.y = Math.round(body.getPosition().y * Level.PPM) - rectangle.height / 2;
-        renderer.setCamPos(rectangle.x - 100, renderer.getCamBounds().y);
         if (rectangle.intersects(level.getEndPoint())) {
             level.receivedEndPoint(this);
         }
