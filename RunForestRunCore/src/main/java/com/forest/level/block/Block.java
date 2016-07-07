@@ -23,6 +23,7 @@ public abstract class Block implements Renderable, Serializable {
     private transient BoxCollisionCallback collisionCallback;
     private transient Body body;
     private transient Level level;
+    private int id = -1;
 
     public Block(int x, int y, String blockImageName) {
         this.rectangle = new Rectangle(x, y, BLOCK_SIDE, BLOCK_SIDE);
@@ -145,6 +146,14 @@ public abstract class Block implements Renderable, Serializable {
 
     public float getRestitution() {
         return 0f;
+    }
+
+    public void setID(int ID) {
+        this.id = ID;
+    }
+
+    public int getID() {
+        return id;
     }
 
     public interface BoxCollisionCallback {

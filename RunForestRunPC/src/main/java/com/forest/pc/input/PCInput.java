@@ -8,7 +8,7 @@ import java.awt.event.KeyListener;
 /**
  * Created by Mathias on 09.05.16.
  */
-public class PCInput implements Input, KeyListener {
+public class PCInput extends Input implements KeyListener {
 
     private ActionCallback upPressedActionCallback, downPressedActionCallback,
             leftPressedActionCallback, rightPressedActionCallback, jumpPressedActionCallback,

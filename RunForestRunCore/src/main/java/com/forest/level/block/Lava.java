@@ -8,6 +8,8 @@ import com.forest.render.Renderer;
  */
 public class Lava extends Block {
 
+    public static final long serialVersionUID = 1338L;
+
     public Lava(int x, int y, String blockImageName) {
         super(x, y, blockImageName);
     }

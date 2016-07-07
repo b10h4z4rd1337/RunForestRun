@@ -1,8 +1,8 @@
 package com.forest.builder;
 
 import com.forest.builder.render.BuilderPanel;
-import com.forest.level.Level;
-import com.forest.pc.PCMusicFactory;
+import com.forest.music.Music;
+import com.forest.pc.music.PCMusic;
 
 import javax.swing.*;
 
@@ -12,12 +12,15 @@ import javax.swing.*;
 public class Main {
 
     public static void main(String[] args) {
-        Level.MUSIC_FACTORY = new PCMusicFactory();
+        Music.MUSIC_FACTORY = PCMusic.FACTORY;
+
         SwingUtilities.invokeLater(() -> {
             JFrame frame = new JFrame("RunForestRunBuilder");
             frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
             frame.setContentPane(new BuilderPanel(frame));
             frame.pack();
+            frame.setFocusable(true);
+            frame.requestFocusInWindow();
             frame.setVisible(true);
         });
     }

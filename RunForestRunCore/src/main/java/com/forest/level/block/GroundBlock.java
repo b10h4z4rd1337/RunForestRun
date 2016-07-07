@@ -8,6 +8,8 @@ import com.forest.render.Renderer;
  */
 public class GroundBlock extends Block {
 
+    public static final long serialVersionUID = 1338L;
+
     public GroundBlock(int x, int y, String blockImageName) {
         super(x, y, blockImageName);
     }

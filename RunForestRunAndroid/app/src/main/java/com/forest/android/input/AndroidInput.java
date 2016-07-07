@@ -1,9 +1,14 @@
 package com.forest.android.input;
 
+import android.graphics.Point;
 import android.view.MotionEvent;
 import android.view.View;
 
 import com.forest.Rectangle;
+import com.forest.android.MainActivity;
+import com.forest.android.music.AndroidMusic;
+import com.forest.android.render.gl.MyGLRenderer;
+import com.forest.android.render.gl.MyGLSurfaceView;
 import com.forest.input.Input;
 import com.forest.menu.Button;
 import com.forest.render.Renderable;
@@ -14,10 +19,9 @@ import java.util.LinkedList;
 /**
  * Created by Mathias on 23.05.16.
  */
-public class AndroidInput implements Input, View.OnTouchListener, Renderable {
+public class AndroidInput extends Input implements View.OnTouchListener, Renderable {
 
-    private int width, height;
-
+    private double width, height, screenWidth, screenHeight;
     private ActionCallback upPressedActionCallback, downPressedActionCallback,
             leftPressedActionCallback, rightPressedActionCallback, jumpPressedActionCallback,
             upReleaseActionCallback, downReleaseActionCallback, leftReleaseActionCallback,
@@ -25,10 +29,14 @@ public class AndroidInput implements Input, View.OnTouchListener, Renderable {
 
     private LinkedList<Button> buttons = new LinkedList<>();
 
-    public AndroidInput(int width, int height) {
-        this.width = width;
-        this.height = height;
-        Button leftButton = new Button(0, 0, 100, 100, "");
+    public AndroidInput() {
+        Point p = MyGLSurfaceView.getDisplaySize(MainActivity.CONTEXT);
+        screenWidth = p.x;
+        screenHeight = p.y;
+        height = 400;
+        width = (int) (400.0 * ((double)screenWidth / (double)screenHeight));
+
+        Button leftButton = new Button(0, 0, 50, 50, "");
         leftButton.setPressedCallback(new Button.Callback() {
             @Override
             public void onClick() {
@@ -43,7 +51,7 @@ public class AndroidInput implements Input, View.OnTouchListener, Renderable {
         });
         buttons.add(leftButton);
 
-        Button rightButton = new Button(220, 0, 100, 100, "");
+        Button rightButton = new Button(120, 0, 50, 50, "");
         rightButton.setPressedCallback(new Button.Callback() {
             @Override
             public void onClick() {
@@ -58,7 +66,7 @@ public class AndroidInput implements Input, View.OnTouchListener, Renderable {
         });
         buttons.add(rightButton);
 
-        Button upButton = new Button(110, 110, 100, 100, "");
+        Button upButton = new Button(60, 60, 50, 50, "");
         upButton.setPressedCallback(new Button.Callback() {
             @Override
             public void onClick() {
@@ -73,7 +81,7 @@ public class AndroidInput implements Input, View.OnTouchListener, Renderable {
         });
         buttons.add(upButton);
 
-        Button downButton = new Button(110, 0, 100, 100, "");
+        Button downButton = new Button(60, 0, 50, 50, "");
         downButton.setPressedCallback(new Button.Callback() {
             @Override
             public void onClick() {
@@ -88,7 +96,7 @@ public class AndroidInput implements Input, View.OnTouchListener, Renderable {
         });
         buttons.add(downButton);
 
-        Button jumpButton = new Button(width - 100, 0, 100, 100, "");
+        Button jumpButton = new Button((int) (width - 50), 0, 50, 50, "");
         jumpButton.setPressedCallback(new Button.Callback() {
             @Override
             public void onClick() {
@@ -162,7 +170,7 @@ public class AndroidInput implements Input, View.OnTouchListener, Renderable {
     public boolean onTouch(View v, MotionEvent event) {
         int index = event.getActionIndex();
         System.out.println(index);
-        Rectangle tmp = new Rectangle(Math.round(event.getX(index)), Math.round(height - event.getY(index)), 1, 1);
+        Rectangle tmp = new Rectangle((int)Math.round(event.getX(index) * (width / screenWidth)), (int)height - (int)Math.round(event.getY(index) * (height / screenHeight)), 1, 1);
         for (Button button : buttons) {
             if (button.getRectangle().intersects(tmp)) {
                 switch (event.getActionMasked()) {
@@ -185,17 +193,5 @@ public class AndroidInput implements Input, View.OnTouchListener, Renderable {
         for (Button button : buttons) {
             button.render(renderer);
         }
-    }
-
-    public void setWidth(int width) {
-        this.width = width;
-        Button jumpButton = buttons.peekLast();
-        Rectangle rect = jumpButton.getRectangle();
-        rect.x = width - rect.width;
-        jumpButton.setRectangle(rect);
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
     }
 }

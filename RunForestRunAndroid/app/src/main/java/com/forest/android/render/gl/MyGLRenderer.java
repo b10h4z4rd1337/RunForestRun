@@ -2,6 +2,7 @@ package com.forest.android.render.gl;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.opengl.GLES10;
 import android.opengl.GLES20;
 import android.opengl.GLSurfaceView;
 import android.opengl.GLUtils;
@@ -20,7 +21,6 @@ import java.io.IOException;
 public class MyGLRenderer extends Renderer implements GLSurfaceView.Renderer {
 
     private AndroidImageManager imageManager;
-    private AndroidInput androidInput;
     private StringBitmapManager stringBitmapManager;
 
     // Our matrices
@@ -31,9 +31,8 @@ public class MyGLRenderer extends Renderer implements GLSurfaceView.Renderer {
     private Shape shape;
     private NativeShape nativeShape;
 
-    public MyGLRenderer(Context context, AndroidInput input) {
-        super(0, 0, input);
-        this.androidInput = input;
+    public MyGLRenderer(Context context) {
+        super(0, 0);
         imageManager = new AndroidImageManager(context);
         stringBitmapManager = new StringBitmapManager();
     }
@@ -50,12 +49,14 @@ public class MyGLRenderer extends Renderer implements GLSurfaceView.Renderer {
     }
 
     @Override
-    public void onSurfaceChanged(GL10 gl, int width, int height) {
-        setWidth(width);
-        setHeight(height);
-        androidInput.setWidth(width);
-        androidInput.setHeight(height);
-        GLES20.glViewport(0, 0, width, height);
+    public void onSurfaceChanged(GL10 gl, int screen_width, int screen_height) {
+
+        int vHeight = 400, vWidth = (int) ((float) vHeight * ((float) screen_width / (float) screen_height));
+
+        GLES20.glViewport(0,0,screen_width,screen_height);
+
+        setWidth(vWidth);
+        setHeight(vHeight);
 
         // Clear matrices
         for(int i=0;i<16;i++)
@@ -66,7 +67,7 @@ public class MyGLRenderer extends Renderer implements GLSurfaceView.Renderer {
         }
 
         // Setup our screen width and height for normal sprite translation.
-        Matrix.orthoM(mtrxProjection, 0, 0f, width, 0.0f, height, 0, 50);
+        Matrix.orthoM(mtrxProjection, 0, 0, vWidth, 0, vHeight, 0, 50);
 
         // Set the camera position (View matrix)
         Matrix.setLookAtM(mtrxView, 0, 0f, 0f, 1f, 0f, 0f, 0f, 0f, 1.0f, 0.0f);
@@ -78,6 +79,7 @@ public class MyGLRenderer extends Renderer implements GLSurfaceView.Renderer {
     @Override
     public void onDrawFrame(GL10 gl) {
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
+        GLES20.glClearColor(1f, 1f, 1f, 1f);
         render();
     }
 
@@ -113,14 +115,17 @@ public class MyGLRenderer extends Renderer implements GLSurfaceView.Renderer {
     }
 
     @Override
-    public void drawImage(float x, float y, float width, float height, String name) {
-        drawImagePrivate(x - getCamBounds().x, y, width, height, name);
-    }
-
-    @Override
-    public void drawImagePrivate(float x, float y, float width, float height, String name) {
+    public void drawImagePrivate(float x, float y, float width, float height, String name, Color color) {
         try {
-            shape.setTextureID(imageManager.getImage(name));
+            if (color == null) {
+                int id = imageManager.getImage(name);
+                if (id != -1)
+                    shape.setTextureID(id);
+                else
+                    return;
+            } else {
+                shape.setTextureID(imageManager.getColoredImage(name, color));
+            }
             shape.setBounds(x, y + height, x + width, y);
             shape.draw(mtrxProjectionAndView);
         } catch (Exception e) {

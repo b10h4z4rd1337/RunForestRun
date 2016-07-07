@@ -2,6 +2,7 @@ package com.forest.builder;
 
 import com.forest.level.LevelData;
 import com.forest.level.block.Block;
+import com.forest.pc.PCFileLoader;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -131,6 +132,7 @@ public class Utils {
 
     public static File openFileSaveDialog(Component parent) {
         final JFileChooser fileChooser = createFileChooser();
+        fileChooser.setCurrentDirectory(PCFileLoader.appData);
         int retVal = fileChooser.showSaveDialog(parent);
 
         if (retVal == JFileChooser.APPROVE_OPTION) {
@@ -145,7 +147,7 @@ public class Utils {
         return (Block) cons.newInstance(0, 300, blockClass.getSimpleName() + ".png");
     }
 
-    public static void handleException(JFrame jframe, Exception e) {
-        SwingUtilities.invokeLater(() -> JOptionPane.showMessageDialog(jframe, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE));
+    public static void handleException(JFrame jframe, String message) {
+        SwingUtilities.invokeLater(() -> JOptionPane.showMessageDialog(jframe, message, "Error", JOptionPane.ERROR_MESSAGE));
     }
 }

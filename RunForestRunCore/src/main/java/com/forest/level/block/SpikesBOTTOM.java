@@ -8,6 +8,8 @@ import com.forest.render.Renderer;
  */
 public class SpikesBOTTOM extends Block{
 
+    public static final long serialVersionUID = 1338L;
+
     public SpikesBOTTOM(int x, int y, String name) {
         super(x, y, name);
     }

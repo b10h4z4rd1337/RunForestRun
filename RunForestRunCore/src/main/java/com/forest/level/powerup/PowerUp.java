@@ -10,6 +10,8 @@ import com.forest.render.*;
  */
 public abstract class PowerUp extends Block {
 
+    public static final long serialVersionUID = 1338L;
+
     private static int WIDTH = 26, HEIGHT = 26;
 
     public PowerUp(int x, int y, String powerUpImageName) {

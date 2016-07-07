@@ -30,7 +30,7 @@ public class StringBitmapManager {
         Bitmap result = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_4444);
         canvas.setBitmap(result);
         result.eraseColor(0);
-        paint.setColor(Color.WHITE);
+        paint.setColor(Color.BLACK);
         canvas.drawText(text, 0, height, paint);
         return result;
     }
