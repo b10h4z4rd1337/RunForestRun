@@ -1,6 +1,5 @@
 package com.forest.pc.render;
 
-import com.forest.input.Input;
 import com.forest.render.Color;
 import com.forest.render.Renderer;
 
@@ -15,8 +14,8 @@ public class PCRenderer extends Renderer {
     private PCImageManager pcImageManager;
     private Graphics graphics;
 
-    public PCRenderer(int width, int height, Input input) {
-        super(width, height, input);
+    public PCRenderer(int width, int height) {
+        super(width, height);
         pcImageManager = new PCImageManager();
     }
 
@@ -25,11 +24,14 @@ public class PCRenderer extends Renderer {
     }
 
     @Override
-    public void drawImagePrivate(float x, float y, float width, float height, String name) {
+    public void drawImagePrivate(float x, float y, float width, float height, String name, Color color) {
         y = this.getHeight() - y - height;
         Image image = null;
         try {
-            image = pcImageManager.getImage(name);
+            if (color != null)
+                image = pcImageManager.coloredImage(name, color);
+            else
+                image = pcImageManager.getImage(name);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -42,7 +44,6 @@ public class PCRenderer extends Renderer {
     @Override
     public void drawRect(int x, int y, int width, int height, Color color) {
         y = this.camera.height - y - height;
-        x -= camera.x;
         graphics.setColor(new java.awt.Color(color.r, color.g, color.b, color.a));
         graphics.fillRect(x, y, width, height);
     }
@@ -68,5 +69,4 @@ public class PCRenderer extends Renderer {
     public int getTextWidth(String text) {
         return graphics.getFontMetrics().stringWidth(text);
     }
-
 }

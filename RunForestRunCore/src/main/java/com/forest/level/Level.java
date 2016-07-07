@@ -1,6 +1,7 @@
 package com.forest.level;
 
 import com.forest.Rectangle;
+import com.forest.input.Input;
 import com.forest.level.block.Block;
 import com.forest.level.block.Cloud;
 import com.forest.level.block.GroundBlock;
@@ -8,7 +9,7 @@ import com.forest.level.powerup.DoubleJumpPowerUp;
 import com.forest.level.powerup.SpeedPowerUp;
 import com.forest.menu.GameFinishedOverlay;
 import com.forest.menu.GameOverOverlay;
-import com.forest.music.MusicFactory;
+import com.forest.music.Music;
 import com.forest.render.Renderable;
 import com.forest.render.Renderer;
 import org.jbox2d.callbacks.ContactImpulse;
@@ -37,34 +38,32 @@ public class Level implements Renderable {
             return o1.getX() < o2.getX() ? -1 : 1;
         }
     };
-    public static MusicFactory MUSIC_FACTORY;
 
     //Game Dynamics
     private Rectangle spawnPoint, endPoint;
-    private Player player;
-    private Stopwatch stopwatch = new Stopwatch();
-    private boolean gameOver = false;
+    protected Player player;
+    protected Stopwatch stopwatch = new Stopwatch();
+    protected boolean gameOver = false;
+    private Music levelMusic;
 
     //Rendering
     private String backgroundImageName;
-    private LinkedList<Block> blocksAfterScope, blocksBeforeScope = new LinkedList<>();
-    private LinkedList<Block> blocksInScope = new LinkedList<>();
+    protected volatile LinkedList<Block> blocksAfterScope;
+    protected volatile LinkedList<Block> blocksBeforeScope = new LinkedList<>();
+    protected volatile LinkedList<Block> blocksInScope = new LinkedList<>();
     private GameFinishedOverlay gameFinishedOverlay;
     private GameOverOverlay gameOverOverlay;
 
     //Physics
-    private World world;
-    private LinkedList<Body> bodiesToRemove = new LinkedList<>();
+    protected World world;
+    protected LinkedList<Body> bodiesToRemove = new LinkedList<>();
 
     public Level(LevelData levelData) {
         initPhysics();
         prepareFromLevelData(levelData);
         spawnPlayer();
-        Level.MUSIC_FACTORY.createMusic("mus.wav").start();
-    }
-
-    public static void setMusicFactory(MusicFactory musicFactory) {
-        Level.MUSIC_FACTORY = musicFactory;
+        levelMusic = Music.MUSIC_FACTORY.createMusic("RFR1.wav");
+        levelMusic.loop();
     }
 
     private void prepareFromLevelData(LevelData levelData) {
@@ -139,22 +138,19 @@ public class Level implements Renderable {
     }
 
     private void spawnPlayer() {
-        this.player = new Player(spawnPoint.x, spawnPoint.y, 40, 75, "player.png", this);
+        setPlayer(new Player(spawnPoint.x, spawnPoint.y, "player.png", this));
+        this.player.setupInput(Input.FACTORY.createInput());
+    }
+
+    public void setPlayer(Player player) {
+        player.setLevel(this);
+        this.player = player;
     }
 
     public void removeBlock(Block block) {
-        int index;
-        if ((index = blocksBeforeScope.indexOf(block)) != -1) {
-            blocksBeforeScope.remove(index);
-        }
-
-        if ((index = blocksInScope.indexOf(block)) != -1) {
-            blocksInScope.remove(index);
-        }
-
-        if ((index = blocksAfterScope.indexOf(block)) != -1) {
-            blocksAfterScope.remove(index);
-        }
+        if (!blocksInScope.remove(block))
+            if (!blocksBeforeScope.remove(block))
+                blocksAfterScope.remove(block);
 
         bodiesToRemove.add(block.getBody());
     }
@@ -179,6 +175,7 @@ public class Level implements Renderable {
 
     private int lastCamX = Integer.MIN_VALUE;
 
+    //TODO: Fix renderer
     private void updateBlocks(Rectangle camBounds) {
         if (lastCamX < camBounds.x) {
             while (!blocksInScope.isEmpty() && !blocksInScope.peekFirst().getBounds().intersects(camBounds)) {
@@ -200,12 +197,28 @@ public class Level implements Renderable {
         lastCamX = camBounds.x;
     }
 
-    private void update(float deltaT) {
-        world.step(deltaT, 3, 8);
-        System.out.println(deltaT);
+    protected void removeBlocksUpdate() {
+
     }
 
+    private void update(float deltaT) {
+        world.step(deltaT, 3, 8);
+    }
+
+    private boolean firstRender = true;
+
     public void render(Renderer renderer) {
+        if (firstRender) {
+            renderer.setCamPos(spawnPoint.x - 100, spawnPoint.y);
+            firstRender = false;
+        }
+        if (renderer.isUpdateNeeded()) {
+            this.lastCamX = Integer.MIN_VALUE;
+            blocksAfterScope.addAll(0, blocksInScope);
+            blocksInScope.clear();
+            blocksAfterScope.addAll(0, blocksBeforeScope);
+            blocksBeforeScope.clear();
+        }
         if(gameOver){
             if (gameOverOverlay == null)
                 gameOverOverlay = new GameOverOverlay(renderer, stopwatch.getTimeText());
@@ -231,6 +244,8 @@ public class Level implements Renderable {
         update((float)renderer.getDeltaTime() / 1000f);
         updateBlocks(renderer.getCamBounds());
 
+        removeBlocksUpdate();
+
         for (Body body : bodiesToRemove) {
             world.destroyBody(body);
         }
@@ -245,12 +260,13 @@ public class Level implements Renderable {
 
     public void setGameOver(){
         this.gameOver = true;
+        this.levelMusic.stop();
     }
 
     /**
      * Create Test Level
      */
-    public static Level createTestLevel() {
+    public static LevelData createTestLevel() {
         LevelData levelData = new LevelData();
 
         //Set Background Image
@@ -259,15 +275,15 @@ public class Level implements Renderable {
         levelData.blocks.add(new GroundBlock(-100, 0, 2025, 50, "GroundBlock.png"));
 
         //Create PowerUp
-        levelData.blocks.add(new DoubleJumpPowerUp(200, 100, "Booster Icon JUMP.png"));
-        levelData.blocks.add(new SpeedPowerUp(300, 200, "Booster Icon SPEED.png"));
+        levelData.blocks.add(new DoubleJumpPowerUp(200, 100, "DoubleJumpPowerUp.png"));
+        levelData.blocks.add(new SpeedPowerUp(300, 200, "SpeedPowerUp.png"));
 
         //Sort Blocks
         Collections.sort(levelData.blocks, Level.BLOCK_COMPARATOR);
         levelData.spawnPoint = new Rectangle(0, 0, 1, 1);
         levelData.endPoint = new Rectangle(1950, 0, 1, 1000);
 
-        return new Level(levelData);
+        return levelData;
     }
 
     public static LevelData createRandomLevel() {
@@ -287,7 +303,7 @@ public class Level implements Renderable {
             double randomBlock = Math.random();
             if(randomBlock<0.5){
                 int k = (int) Math.round(Math.random() * 5);
-                levelData.blocks.add(new Cloud(j, 50 * (k + 1), "Slime.png"));
+                levelData.blocks.add(new Cloud(j, 50 * (k + 1), "Cloud.png"));
             }
             else{
                 int k = (int) Math.round(Math.random() * 5);

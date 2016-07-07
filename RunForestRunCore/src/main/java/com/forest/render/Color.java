@@ -20,4 +20,18 @@ public class Color {
         this(r, g, b, 255);
     }
 
+    @Override
+    public String toString() {
+        return r + "/" + g + "/" + b + "/" + a;
+    }
+
+    public static Color fromString(String colorString) {
+        String[] values = colorString.split("/");
+        return new Color(
+                Integer.parseInt(values[0]),
+                Integer.parseInt(values[1]),
+                Integer.parseInt(values[2]),
+                Integer.parseInt(values[3])
+        );
+    }
 }

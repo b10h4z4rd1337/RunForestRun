@@ -1,9 +1,11 @@
 package com.forest.builder.render;
 
 import com.forest.builder.Utils;
-import com.forest.level.Level;
+import com.forest.input.Input;
+import com.forest.input.InputFactory;
 import com.forest.level.LevelData;
 import com.forest.level.block.Block;
+import com.forest.pc.input.PCInput;
 import com.forest.pc.render.GamePanel;
 
 import javax.swing.*;
@@ -31,11 +33,29 @@ public class BuilderPanel extends JPanel {
         JMenuBar bar = new JMenuBar();
         JMenuItem item = new JMenuItem("Run");
         item.addActionListener(e -> SwingUtilities.invokeLater(() -> {
-            JFrame frame = new JFrame("RunForestRun");
-            frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-            frame.setContentPane(new GamePanel(new Level(gameBuilderPanel.toLevelData()), true));
-            frame.pack();
-            frame.setVisible(true);
+            LevelData data = gameBuilderPanel.toLevelData();
+            if (data.endPoint != null && data.spawnPoint != null) {
+                GamePanel panel = new GamePanel(data, true);
+                Input.FACTORY = new InputFactory() {
+
+                    private PCInput pcInput = null;
+
+                    @Override
+                    public Input createInput() {
+                        if (pcInput == null)
+                            pcInput = new PCInput();
+                        panel.addKeyListener(pcInput);
+                        return pcInput;
+                    }
+                };
+                JFrame frame = new JFrame("RunForestRun");
+                frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+                frame.setContentPane(panel);
+                frame.pack();
+                frame.setVisible(true);
+            } else {
+                Utils.handleException(jframe, "Must set flags!");
+            }
         }));
         bar.add(item);
 
@@ -49,40 +69,50 @@ public class BuilderPanel extends JPanel {
                     gameBuilderPanel.loadFromLevelData(levelData);
                 }
             } catch (ClassNotFoundException | IOException e1) {
-                Utils.handleException(jframe, e1);
+                Utils.handleException(jframe, e1.getMessage());
             }
         });
         menu.add(item);
 
         item = new JMenuItem("Save");
         item.addActionListener(e -> {
-            try {
-                File file = Utils.openFileSaveDialog(jframe);
-                if (file != null && !file.getName().endsWith(".rfr")) {
-                    file = new File(file, file.getName() + ".rfr");
+            LevelData data = gameBuilderPanel.toLevelData();
+            if (data.endPoint != null && data.spawnPoint != null) {
+                try {
+                    File file = Utils.openFileSaveDialog(jframe);
+                    if (file != null && !file.getName().endsWith(".rfr")) {
+                        file = new File(file.getAbsolutePath() + ".rfr");
+                    }
+                    if (file != null) {
+                        Utils.levelDataToFile(data, file);
+                    }
+                } catch (IOException e1) {
+                    Utils.handleException(jframe, e1.getMessage());
                 }
-                if (file != null) {
-                    Utils.levelDataToFile(gameBuilderPanel.toLevelData(), file);
-                }
-            } catch (IOException e1) {
-                Utils.handleException(jframe, e1);
+            } else {
+                Utils.handleException(jframe, "Must set flags!");
             }
         });
         menu.add(item);
 
         item = new JMenuItem("Upload");
         item.addActionListener(e -> {
-            try {
-                new Thread(() -> {
-                    try {
-                        Utils.upload(gameBuilderPanel.toLevelData());
-                        SwingUtilities.invokeLater(() -> JOptionPane.showMessageDialog(jframe, "Successfully uploaded!", "Upload", JOptionPane.INFORMATION_MESSAGE));
-                    } catch (Exception e1) {
-                        Utils.handleException(jframe, e1);
-                    }
-                }).start();
-            } catch (Exception e1) {
-                e1.printStackTrace();
+            LevelData data = gameBuilderPanel.toLevelData();
+            if (data.endPoint != null && data.spawnPoint != null) {
+                try {
+                    new Thread(() -> {
+                        try {
+                            Utils.upload(gameBuilderPanel.toLevelData());
+                            SwingUtilities.invokeLater(() -> JOptionPane.showMessageDialog(jframe, "Successfully uploaded!", "Upload", JOptionPane.INFORMATION_MESSAGE));
+                        } catch (Exception e1) {
+                            Utils.handleException(jframe, e1.getMessage());
+                        }
+                    }).start();
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+            } else {
+                Utils.handleException(jframe, "Must set flags!");
             }
         });
         menu.add(item);

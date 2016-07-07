@@ -17,13 +17,11 @@ public class Grid implements Renderable {
     }
 
     private void renderVerticalLines(Renderer renderer) {
-        int startX = renderer.getCamBounds().x;
-        startX = startX - (startX % Block.BLOCK_SIDE);
         int width = renderer.getWidth();
         int height = renderer.getHeight();
 
-        for (int x = startX; x < startX + width; x += Block.BLOCK_SIDE) {
-            renderer.drawRect(x - 1, 0, 2, height, Color.BLACK);
+        for (int x = -1; x < width; x += Block.BLOCK_SIDE) {
+            renderer.drawRect(x, 0, 2, height, Color.BLACK);
         }
     }
 
@@ -31,8 +29,8 @@ public class Grid implements Renderable {
         int width = renderer.getWidth();
         int height = renderer.getHeight();
 
-        for (int y = 0; y < height; y += Block.BLOCK_SIDE) {
-            renderer.drawRect(0, y - 1, width, 2, Color.BLACK);
+        for (int y = -1 ; y < height + 1; y += Block.BLOCK_SIDE) {
+            renderer.drawRect(0, y, width, 2, Color.BLACK);
         }
     }
 

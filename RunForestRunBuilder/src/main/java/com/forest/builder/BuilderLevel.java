@@ -30,6 +30,12 @@ public class BuilderLevel implements Renderable {
         Collections.sort(this.blocksInScope, Level.BLOCK_COMPARATOR);
     }
 
+    public void removeBlock(Block block) {
+        if (!blocksInScope.remove(block))
+            if (!blocksBeforeScope.remove(block))
+                blocksAfterScope.remove(block);
+    }
+
     public void setStartPoint(int x, int y) {
         spawnPoint = new Rectangle(x, y, 5, 5);
     }

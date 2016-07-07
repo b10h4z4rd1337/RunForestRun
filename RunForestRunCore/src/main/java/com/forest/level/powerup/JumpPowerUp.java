@@ -7,6 +7,8 @@ import com.forest.level.Player;
  */
 public class JumpPowerUp extends PowerUp {
 
+    public static final long serialVersionUID = 1338L;
+
     public JumpPowerUp(int x, int y, String powerUpImageName) {
         super(x, y, powerUpImageName);
     }

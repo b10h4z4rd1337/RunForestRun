@@ -13,6 +13,8 @@ import org.jbox2d.dynamics.World;
  */
 public class Slime extends Block {
 
+    public static final long serialVersionUID = 1338L;
+
     public Slime(int x, int y, String blockImageName) {
         super(x, y, blockImageName);
     }

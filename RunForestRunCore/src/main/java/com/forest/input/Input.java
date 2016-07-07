@@ -3,22 +3,24 @@ package com.forest.input;
 /**
  * Created by Mathias on 09.05.16.
  */
-public interface Input {
-    void setPressedUpListener(ActionCallback actionCallback);
-    void setPressedDownListener(ActionCallback actionCallback);
-    void setPressedLeftListener(ActionCallback actionCallback);
-    void setPressedRightListener(ActionCallback actionCallback);
+public abstract class Input {
 
-    void setReleaseUpListener(ActionCallback actionCallback);
-    void setReleaseDownListener(ActionCallback actionCallback);
-    void setReleaseLeftListener(ActionCallback actionCallback);
-    void setReleaseRightListener(ActionCallback actionCallback);
+    public static InputFactory FACTORY;
 
-    void setPressedJumpListener(ActionCallback actionCallback);
-    void setReleasedJumpListener(ActionCallback actionCallback);
+    public abstract void setPressedUpListener(ActionCallback actionCallback);
+    public abstract void setPressedDownListener(ActionCallback actionCallback);
+    public abstract void setPressedLeftListener(ActionCallback actionCallback);
+    public abstract void setPressedRightListener(ActionCallback actionCallback);
 
-    @FunctionalInterface
-    interface ActionCallback {
+    public abstract void setReleaseUpListener(ActionCallback actionCallback);
+    public abstract void setReleaseDownListener(ActionCallback actionCallback);
+    public abstract void setReleaseLeftListener(ActionCallback actionCallback);
+    public abstract void setReleaseRightListener(ActionCallback actionCallback);
+
+    public abstract void setPressedJumpListener(ActionCallback actionCallback);
+    public abstract void setReleasedJumpListener(ActionCallback actionCallback);
+
+    public interface ActionCallback {
         void execute();
     }
 }

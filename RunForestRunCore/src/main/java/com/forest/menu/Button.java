@@ -57,6 +57,10 @@ public class Button implements Renderable {
         this.rectangle = rectangle;
     }
 
+    public void setY(int y) {
+        this.rectangle.y = y;
+    }
+
     @Override
     public void render(Renderer renderer) {
         renderer.drawRect(rectangle.x, rectangle.y, rectangle.width, rectangle.height, color);

@@ -5,6 +5,8 @@ package com.forest.music;
  */
 public abstract class Music {
 
+    public static MusicFactory MUSIC_FACTORY;
+
     private String musicName;
 
     public Music(String musicName) {

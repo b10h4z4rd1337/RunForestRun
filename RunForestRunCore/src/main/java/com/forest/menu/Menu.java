@@ -46,4 +46,8 @@ public abstract class Menu implements Renderable {
             button.render(renderer);
         }
     }
+
+    public LinkedList<Button> getButtons() {
+        return buttons;
+    }
 }

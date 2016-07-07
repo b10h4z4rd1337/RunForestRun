@@ -1,6 +1,7 @@
 package com.forest.builder.render;
 
 import com.forest.level.block.Block;
+import com.forest.level.powerup.PowerUp;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -39,7 +40,8 @@ public class BlockList extends JPanel {
         jlist.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                BlockList.this.selectedIndex(e.getFirstIndex());
+                if (jlist.getSelectedIndex() != -1)
+                    BlockList.this.selectedIndex(jlist.getSelectedIndex());
             }
         });
         this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
@@ -50,9 +52,8 @@ public class BlockList extends JPanel {
         this.setBackground(Color.WHITE);
     }
 
-    private void loadBlockClasses() throws IOException, ClassNotFoundException {
+    private void loadPackage(String pack, Class<?> superClass) throws IOException, ClassNotFoundException {
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-        String pack = "com.forest.level.block";
         Enumeration<URL> resources = classLoader.getResources(pack.replace(".", "/"));
 
         while (resources.hasMoreElements()) {
@@ -65,7 +66,7 @@ public class BlockList extends JPanel {
                         Class clazz = Class.forName(pack + "." + file.getName().substring(0, file.getName().length() - 6));
                         Class superClazz = clazz.getSuperclass();
                         if (superClazz != null) {
-                            if (superClazz.equals(Block.class)) {
+                            if (superClazz.equals(superClass)) {
                                 blockClasses.add((Class<? super Block>) clazz);
                             }
                         }
@@ -73,6 +74,11 @@ public class BlockList extends JPanel {
                 }
             }
         }
+    }
+
+    private void loadBlockClasses() throws IOException, ClassNotFoundException {
+        loadPackage("com.forest.level.block", Block.class);
+        loadPackage("com.forest.level.powerup", PowerUp.class);
     }
 
     private class ListRenderer extends DefaultListCellRenderer {

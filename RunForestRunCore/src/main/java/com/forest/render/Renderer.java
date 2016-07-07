@@ -1,26 +1,33 @@
 package com.forest.render;
 
 import com.forest.Rectangle;
-import com.forest.input.Input;
+import com.forest.menu.Menu;
 
-import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.LinkedBlockingDeque;
 
 /**
  * Created by Mathias on 04.05.2016.
  */
 public abstract class Renderer {
 
-    private Input input;
-    private ConcurrentLinkedQueue<Renderable> thingsToRender;
+    private LinkedBlockingDeque<Renderable> thingsToRender;
     protected Rectangle camera;
     private long lastDrawTime = 0, deltaTime = 0;
 
-    public Renderer(int width, int height, Input input) {
-        this.input = input;
+    public Renderer(int width, int height) {
         camera = new Rectangle(0, 0, width, height);
         lastDrawTime = System.currentTimeMillis();
 
-        thingsToRender = new ConcurrentLinkedQueue<>();
+        thingsToRender = new LinkedBlockingDeque<>();
+    }
+
+    public void touchDown(int x, int y) {
+        for (Renderable renderable : thingsToRender) {
+            if (renderable instanceof Menu) {
+                Menu menu = (Menu) renderable;
+                menu.performClick(x, y);
+            }
+        }
     }
 
     public void render() {
@@ -46,7 +53,7 @@ public abstract class Renderer {
     }
 
     public void addRenderable(Renderable renderable) {
-        thingsToRender.add(renderable);
+        thingsToRender.addLast(renderable);
     }
 
     public void clear() {
@@ -54,9 +61,16 @@ public abstract class Renderer {
     }
 
     public void drawImage(float x, float y, float width, float height, String name) {
-        drawImagePrivate((x - camera.x), y, width, height, name);
+        drawImage(x, y, width, height, name, null);
     }
-    public abstract void drawImagePrivate(float x, float y, float width, float height, String name);
+
+    public void drawImage(float x, float y, float width, float height, String name, Color color) {
+        drawImagePrivate((x - camera.x), (y - camera.y), width, height, name, color);
+    }
+    public void drawImagePrivate(float x, float y, float width, float height, String name) {
+        drawImagePrivate(x, y, width, height, name, null);
+    }
+    public abstract void drawImagePrivate(float x, float y, float width, float height, String name, Color color);
     public abstract void drawRect(int x, int y, int width, int height, Color color);
     public void drawString(int x, int y, String text) { drawString(x, y, text, new Color(0, 0, 0)); }
     public abstract void drawString(int x, int y, String text, Color color);
@@ -84,11 +98,21 @@ public abstract class Renderer {
         return camera;
     }
 
-    public Input getInput() {
-        return input;
-    }
-
     public long getDeltaTime() {
         return deltaTime;
+    }
+
+    private boolean update;
+
+    public void needsUpdate() {
+        this.update = true;
+    }
+
+    public boolean isUpdateNeeded() {
+        if (this.update) {
+            update = false;
+            return true;
+        }
+        return false;
     }
 }
