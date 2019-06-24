@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module external.linked.project.id=":RunForestRunPC:main" external.linked.project.path="$MODULE_DIR$/../../../RunForestRunPC" external.root.project.path="$MODULE_DIR$/../../.." external.system.id="GRADLE" external.system.module.group="com.forest" external.system.module.type="sourceSet" external.system.module.version="0.5" type="JAVA_MODULE" version="4">
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8" inherit-compiler-output="false">
-    <output url="file://$MODULE_DIR$/../../../RunForestRunPC/build/classes/main" />
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
+    <output url="file://$MODULE_DIR$/../../../RunForestRunPC/build/classes/java/main" />
     <exclude-output />
     <content url="file://$MODULE_DIR$/../../../RunForestRunPC/src/main">
       <sourceFolder url="file://$MODULE_DIR$/../../../RunForestRunPC/src/main/java" isTestSource="false" />
@@ -9,6 +9,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="RunForestRunCore_main" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>
@@ -18,6 +19,5 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module" module-name="RunForestRunCore_main" />
   </component>
 </module>

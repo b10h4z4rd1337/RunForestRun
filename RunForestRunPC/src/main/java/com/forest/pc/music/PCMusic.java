@@ -2,8 +2,8 @@ package com.forest.pc.music;
 
 import com.forest.music.Music;
 import com.forest.music.MusicFactory;
-import sun.audio.AudioPlayer;
-import sun.audio.AudioStream;
+//import sun.audio.AudioPlayer;
+//import sun.audio.AudioStream;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,7 +20,7 @@ public class PCMusic extends Music {
         }
     };
 
-    private AudioStream audioStream;
+    //private AudioStream audioStream;
     private boolean loopThis = false;
 
     public PCMusic(String musicName) {
@@ -30,6 +30,7 @@ public class PCMusic extends Music {
     @Override
     public void start() {
         new Thread(() -> {
+            /*
             try {
                 InputStream fis = Music.class.getResourceAsStream(getMusicName());
                 audioStream = new AudioStream(fis);
@@ -37,13 +38,14 @@ public class PCMusic extends Music {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            */
         }).start();
     }
 
     @Override
     public void loop() {
         loopThis = true;
-        new Thread(() -> {
+        new Thread(() -> {/*
             try {
                 start();
                 while (audioStream.available() > 0) {
@@ -56,18 +58,18 @@ public class PCMusic extends Music {
                 }
             } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
-            }
+            }*/
         }).start();
     }
 
     @Override
-    public void stop() {
+    public void stop() {/*
         loopThis = false;
         try {
             long unused = audioStream.skip(audioStream.available());
         } catch (IOException e) {
             e.printStackTrace();
         }
-        AudioPlayer.player.stop(audioStream);
+        AudioPlayer.player.stop(audioStream);*/
     }
 }
